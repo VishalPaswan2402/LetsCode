@@ -1,0 +1,203 @@
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-family: "Roboto Condensed", sans-serif;
+}
+body{
+    background-color: rgb(36, 36, 36);
+    color: wheat;
+}
+#navbarDiv{
+    height: 3.5rem;
+    width: 100%;
+    box-shadow: 0.5px 0.5px 5px gray;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#webName{
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#logo{
+    height: 70%;
+    width: 2.7rem;
+    /* background-color: red; */
+    background-image: url(logo2.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-left: 1.5rem;
+}
+.navLink{
+    font-size: 1.2rem;
+    color: wheat;
+    text-decoration: none;
+    padding-right: 2rem;
+}
+#mode{
+    height: 2.5rem;
+    width: 2.5rem;
+    /* background-color: rgb(151, 151, 151); */
+    margin-right: 1.5rem;
+    border-radius: 20px;
+    color: wheat;
+    border: 2px solid gray;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-evenly;
+}
+.modeIcon{
+    font-size: 1.4rem;
+}
+#homeContent{
+    /* height: 550px; */
+    width: 100%;
+    /* background-color: rgb(71, 105, 93); */
+    display: flex;
+    flex-wrap: wrap;
+    /* align-items: center; */
+    justify-content: space-evenly;
+}
+.homeContentPart{
+    height: 430px;
+    width: 700px;
+    /* background-color: rgb(68, 79, 75); */
+    border: 2px solid wheat;
+    border-radius: 15px;
+    margin: 3rem;
+    align-items: center;
+    text-align: center;
+    justify-content: space-evenly;
+}
+.logTitle{
+    width: 100%;
+    /* background-color: rebeccapurple; */
+    text-align: center;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    padding-top: 8px;
+}
+.formData{
+    height: 89%;
+    width: 100%;
+    /* background-color: blueviolet; */
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+.inputData{
+    height: 2.5rem;
+    width: 80%;
+    border-radius: 10px;
+    border: 2px solid rgb(87, 80, 80);
+    padding-left: 10px;
+    margin: 0.5rem auto;
+}
+.haveAccount{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.9rem;
+}
+.haveAccount p:hover{
+    color: rgb(139, 151, 234);
+    cursor: pointer;
+}
+.submitBtn{
+    background-color: rgb(129, 71, 116);
+    color: wheat;
+    border: 2px solid rgb(87, 80, 80);
+}
+.submitBtn:hover{
+    background-color: rgb(46, 106, 106);
+    border: 2px solid rgb(142, 129, 104);
+}
+#loginForm{
+    height: 20rem;
+    width: 100%;
+    background-color: red;
+}
+.loginPart{
+    height: 80%;
+    width: 40%;
+    background-color: gray;
+    margin: 4rem auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#footer{
+    height: 5.5rem;
+    width: 100%;
+    /* background-color: gray; */
+    /* box-shadow: 0.5px 0.5px 5px gray; */
+}
+.footBox{
+    height: 2.3rem;
+    /* background-color: red; */
+    margin:0.3rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.circleBox{
+    height: 30px;
+    width: 30px;
+    border: 2px solid wheat;
+    border-radius: 50%;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.circleBox:hover{
+    border: 2px solid brown;
+    color: brown;
+}
+.iconSize{
+    font-size: 1.1rem;
+}
+.socialLink{
+    text-decoration: none;
+    color: wheat;
+}
+.designedTag{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}

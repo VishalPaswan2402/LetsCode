@@ -1,0 +1,113 @@
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-family: "Roboto Condensed", sans-serif;
+}
+body{
+    background-color: rgb(36, 36, 36);
+    color: wheat;
+}
+#navbarDiv{
+    height: 3.5rem;
+    width: 100%;
+    box-shadow: 0.5px 0.5px 5px gray;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#webName{
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#logo{
+    height: 70%;
+    width: 2.7rem;
+    /* background-color: red; */
+    background-image: url(logo2.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-left: 1.5rem;
+}
+.navLink{
+    font-size: 1.2rem;
+    color: wheat;
+    text-decoration: none;
+    padding-right: 2rem;
+}
+#mode{
+    height: 2.5rem;
+    width: 2.5rem;
+    /* background-color: rgb(151, 151, 151); */
+    margin-right: 1.5rem;
+    border-radius: 20px;
+    color: wheat;
+    border: 2px solid gray;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-evenly;
+}
+.modeIcon{
+    font-size: 1.4rem;
+}
+#dataContainer{
+    height: 700px;
+    width: 50rem;
+    /* background-color: gray; */
+    margin: 1rem auto;
+}
+#topUserData{
+    width: 100%;
+    /* background-color: beige; */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+.userBox{
+    height: 140px;
+    width: 320px;
+    /* background-color: rgb(128, 79, 79); */
+    border: 2px solid wheat;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.profImg{
+    height: 80%;
+    width: 33%;
+    border-radius: 47%;
+    border: 2px solid wheat;
+    background-color: rgb(177, 177, 107);
+    margin-left: 5px;
+}
+.userName{
+    height: 98%;
+    width: 63%;
+    /* background-color: rgb(121, 121, 63); */
+    padding-top: 25px;
+    text-align: start;
+}
+.queSolBox{
+    height: 140px;
+    width: 450px;
+    /* background-color: rgb(128, 79, 79); */
+    border: 2px solid wheat;
+    border-radius: 10px;
+    padding-top: 5px;
+}
+.barWidth{
+    width: 85%;
+    margin-right: 5px;
+}
+.medium{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 13px auto;
+    padding-left: 5px;
+}
