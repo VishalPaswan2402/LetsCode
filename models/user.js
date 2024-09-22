@@ -18,6 +18,34 @@ const userSchema=new Schema({
     password:{
         type:String,
         required:true
+    },
+    solvedQues:{
+        type:Number,
+        default:0
+    },
+    easySol:{
+        type:Number,
+        default:0
+    },
+    mediumSol:{
+        type:Number,
+        default:0
+    },
+    hardSol:{
+        type:Number,
+        default:0
+    },
+    easyId:{
+        type:[String],
+        default:[]
+    },
+    mediumId:{
+        type:[String],
+        default:[]
+    },
+    hardId:{
+        type:[String],
+        default:[]
     }
 });
 

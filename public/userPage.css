@@ -54,10 +54,10 @@ body{
     font-size: 1.4rem;
 }
 #dataContainer{
-    height: 700px;
+    /* height: 700px; */
     width: 50rem;
     /* background-color: gray; */
-    margin: 1rem auto;
+    margin: 1.5rem auto;
 }
 #topUserData{
     width: 100%;
@@ -71,7 +71,7 @@ body{
     height: 140px;
     width: 320px;
     /* background-color: rgb(128, 79, 79); */
-    border: 2px solid wheat;
+    border: 2px solid rgb(135, 133, 131);
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -96,7 +96,7 @@ body{
     height: 140px;
     width: 450px;
     /* background-color: rgb(128, 79, 79); */
-    border: 2px solid wheat;
+    border: 2px solid rgb(135, 133, 131);
     border-radius: 10px;
     padding-top: 5px;
 }
@@ -110,4 +110,118 @@ body{
     justify-content: space-between;
     margin: 13px auto;
     padding-left: 5px;
+}
+#queTags{
+    /* height: 5rem; */
+    width: 100%;
+    /* background-color: rgb(53, 69, 21); */
+    margin: 1rem auto;
+    border: 2px solid rgb(135, 133, 131);
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    text-align: center;
+    justify-content: space-evenly;
+}
+.queStyle{
+    color: wheat;
+    /* border: 2px solid  blanchedalmond; */
+    padding: 8px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+.queStyle:hover{
+    background-color: rgb(40, 98, 137);
+}
+#randomQueBox{
+    height: 5.4rem;
+    width: 100%;
+    /* background-color: yellowgreen; */
+    border: 2px solid rgb(135, 133, 131);
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
+}
+#selectRandomForm{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.randomQue{
+    background-color: rgb(69, 68, 68);
+    height: 2rem;
+    border-radius: 5px;
+    border: 2px solid rgb(141, 141, 141);
+    color: rgb(215, 209, 209);
+    /* background-color: transparent; */
+}
+.searchRandomBtn{
+    height: 2rem;
+    width: 8.3rem;
+    background-color: rgb(69, 68, 68);
+    border-radius: 5px;
+    border: 2px solid rgb(141, 141, 141);
+    color: rgb(215, 209, 209);
+}
+.searchRandomBtn:hover{
+    background-color: rgb(94, 180, 188);
+    color: black;
+}
+.generatedQue{
+    margin-top: 10px;
+    color: wheat;
+}
+.generatedQue:hover{
+    color: rgb(34, 34, 239);
+}
+.randomIcon{
+    height: 2.5rem;
+    width: 2.5rem;
+    background-color: rebeccapurple;
+    border-radius: 50%;
+}
+/* footer */
+#footer{
+    /* height: 5.5rem; */
+    width: 100%;
+    /* background-color: gray; */
+    margin: 2rem auto;
+    /* box-shadow: 0.5px 0.5px 5px gray; */
+}
+.footBox{
+    height: 2.3rem;
+    /* background-color: red; */
+    margin:0.3rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.circleBox{
+    height: 30px;
+    width: 30px;
+    border: 2px solid wheat;
+    border-radius: 50%;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.circleBox:hover{
+    border: 2px solid brown;
+    color: brown;
+}
+.iconSize{
+    font-size: 1.1rem;
+}
+.socialLink{
+    text-decoration: none;
+    color: wheat;
+}
+.designedTag{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
 }

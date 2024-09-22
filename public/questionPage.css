@@ -53,85 +53,89 @@ body{
 .modeIcon{
     font-size: 1.4rem;
 }
-#homeContent{
-    /* height: 550px; */
-    width: 100%;
-    /* background-color: rgb(71, 105, 93); */
-    display: flex;
-    flex-wrap: wrap;
-    /* align-items: center; */
-    justify-content: space-evenly;
+#dataContainer{
+    /* height: 700px; */
+    width: 50rem;
+    /* background-color: gray; */
+    margin: 0.2rem auto;
 }
-.homeContentPart{
-    height: 430px;
-    width: 700px;
-    /* background-color: rgb(68, 79, 75); */
-    border: 2px solid wheat;
-    border-radius: 15px;
-    margin: 3rem;
-    align-items: center;
-    text-align: center;
-    justify-content: space-evenly;
-}
-.logTitle{
-    width: 100%;
-    /* background-color: rebeccapurple; */
-    text-align: center;
-    border-top-right-radius: 15px;
-    border-top-left-radius: 15px;
-    padding-top: 8px;
-}
-.formData{
-    height: 89%;
-    width: 100%;
-    /* background-color: blueviolet; */
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
-}
-.inputData{
-    height: 2.5rem;
-    width: 80%;
+.queTag{
+    background-color: rgb(224, 156, 156);
     border-radius: 10px;
-    border: 2px solid rgb(87, 80, 80);
-    padding-left: 10px;
-    margin: 0.5rem auto;
+    padding: 10px;
+    font-size: 1.2rem;
+    margin: 15px auto;
+    color: wheat;
 }
-.haveAccount{
-    width: 80%;
-    margin: auto;
+.easyQue{
+    background-color: rgba(144, 239, 131, 0.37);
+}
+.mediumQue{
+    background-color: rgba(210, 236, 110, 0.418);
+}
+.hardQue{
+    background-color: rgba(249, 152, 153, 0.404);
+}
+.queTag:hover{
+    background-color: rgba(78, 77, 77, 0.61);
+    color: rgb(163, 163, 245);
+}
+.queLink{
+    text-decoration: none;
+    width: 93%;
+}
+.quesDone{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 0.9rem;
 }
-.haveAccount p:hover{
-    color: rgb(139, 151, 234);
+.markDone{
+    height: 50px;
+    width: 45px;
+    /* background-color: red; */
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
     cursor: pointer;
 }
-.submitBtn{
-    background-color: rgb(129, 71, 116);
-    color: wheat;
-    border: 2px solid rgb(87, 80, 80);
+.markAsDone{
+    background-color: rgb(74, 71, 71);
+    height: 5.5rem;
+    width: 17rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    text-align: center;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    position:absolute;
+    margin:15rem;
+    z-index: 999;
+    display: none;
 }
-.submitBtn:hover{
-    background-color: rgb(46, 106, 106);
-    border: 2px solid rgb(142, 129, 104);
+.doneBtn{
+    padding: 9px;
+    margin: 3px;
+    border-radius: 10px;
 }
-#loginForm{
-    height: 20rem;
+#blockPg{
+    height: 100%;
     width: 100%;
-    background-color: red;
+    background-color: rgba(234, 230, 230, 0.1);
+    position: fixed;
+    margin: 0;
+    z-index: 900;
+    display: none;
 }
-.loginPart{
-    height: 80%;
-    width: 40%;
-    background-color: gray;
-    margin: 4rem auto;
-}
+
+/* footer */
 #footer{
     /* height: 5.5rem; */
     width: 100%;
     /* background-color: gray; */
+    margin: 2rem auto;
     /* box-shadow: 0.5px 0.5px 5px gray; */
 }
 .footBox{
