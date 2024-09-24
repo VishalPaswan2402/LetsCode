@@ -63,7 +63,7 @@ body{
     justify-content: space-evenly;
 }
 .homeContentPart{
-    height: 430px;
+    height: 420px;
     width: 700px;
     /* background-color: rgb(68, 79, 75); */
     border: 2px solid wheat;
@@ -94,7 +94,7 @@ body{
     border-radius: 10px;
     border: 2px solid rgb(87, 80, 80);
     padding-left: 10px;
-    margin: 0.5rem auto;
+    margin: 0.7rem auto;
 }
 .haveAccount{
     width: 80%;

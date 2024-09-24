@@ -53,6 +53,9 @@ body{
 .modeIcon{
     font-size: 1.4rem;
 }
+.coderTry{
+    text-align: center;
+}
 #dataContainer{
     /* height: 700px; */
     width: 50rem;
@@ -99,6 +102,9 @@ body{
     justify-content: center;
     font-size: 1.5rem;
     cursor: pointer;
+}
+.markDone:hover{
+    background-color: rgba(78, 77, 77, 0.61);
 }
 .markAsDone{
     background-color: rgb(74, 71, 71);

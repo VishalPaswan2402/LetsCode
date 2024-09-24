@@ -95,7 +95,7 @@ body{
 .queSolBox{
     height: 140px;
     width: 450px;
-    /* background-color: rgb(128, 79, 79); */
+    /* background-color: rgba(87, 87, 87, 0.338); */
     border: 2px solid rgb(135, 133, 131);
     border-radius: 10px;
     padding-top: 5px;
@@ -103,6 +103,7 @@ body{
 .barWidth{
     width: 85%;
     margin-right: 5px;
+    background-color: rgba(128, 128, 128, 0.299);
 }
 .medium{
     display: flex;

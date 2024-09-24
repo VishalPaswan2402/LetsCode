@@ -76,25 +76,17 @@
         </div>
 
         <div id="randomQueBox">
-            <form id="selectRandomForm" method="">
-                <select id="queTopic" class="randomQue">
-                    <option selected>Select Topic</option>
-                    <option value="Random">Random</option>
-                    <option value="Array">Array</option>
-                    <option value="Searching & Sorting">Searching & Sorting</option>
-                    <option value="String">String</option>
-                </select>
-    
-                <select id="queLevel" class="randomQue">
-                    <option selected>Select Difficulty Level</option>
-                    <option value="Random">Random</option>
-                    <option value="Easy">Easy</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Hard">Hard</option>
+            <h6>Hey coder, pick any question to solve...</h6>
+            <form id="selectRandomForm" method="post" action="/LetsCode/randomQue/Pick/<%=userData._id%>?_method=PUT">
+                <select name="qLevel" id="queLevel" class="randomQue">
+                    <option selected value="random">Select Que. Level</option>
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
                 </select>
                 <button type="submit" class="searchRandomBtn"><i class="fa-solid fa-shuffle fa-flip randomLog"></i> Pick Question</button>
             </form>
-            <a href="#" target="_blank" style="text-decoration: none;"><p class="generatedQue">Random question is going to displayed here...</p></a>
+            <!-- <a href="#" target="_blank" style="text-decoration: none;"><p class="generatedQue">Random question is going to displayed here...</p></a> -->
         </div>
         <!-- question tags data -->
 

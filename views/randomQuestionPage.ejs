@@ -23,65 +23,60 @@
     </div>
 
     <!-- Question list -->
-    <% if (ques.length > 0) { %>
-        <h2 style="text-align: center;padding: 10px; color: rgb(183, 180, 180);"><%=ques[0].topic%></h2>
+        <h2 style="text-align: center;padding: 10px; color: rgb(183, 180, 180);"><%=randomQuestion.topic%></h2>
+        <h5 class="coderTry">Load your logic, aim for clarity, and fire at this <%=randomQuestion.level%>-level challenge!</h5>
         <div id="dataContainer">
-            <% ques.forEach((que, idx) => { %>
                 <div class="quesDone">
-                    <a href="<%= que.urlLink %>" class="queLink" target="_blank" aria-label="<%= que.questionName %>">
+                    <a href="<%= randomQuestion.urlLink %>" class="queLink" target="_blank" aria-label="<%= randomQuestion.questionName %>">
                         <div class="queTag 
-                            <%= que.level === 'easy' ? 'easyQue' : 
-                                que.level === 'medium' ? 'mediumQue' : 
-                                que.level === 'hard' ? 'hardQue' : '' 
+                            <%= randomQuestion.level === 'easy' ? 'easyQue' : 
+                                randomQuestion.level === 'medium' ? 'mediumQue' : 
+                                randomQuestion.level === 'hard' ? 'hardQue' : '' 
                             %>">
-                            &nbsp;&nbsp;&nbsp; <%= (idx + 1).toString().padStart(2, '0') %>. &nbsp;&nbsp;&nbsp; <%= que.questionName %> &nbsp;&nbsp;&nbsp; 
-                            <% if (que.level === 'easy') { %>
+                            &nbsp;&nbsp;&nbsp; <i class="fa-solid fa-star fa-spin"></i> &nbsp;&nbsp;&nbsp; <%= randomQuestion.questionName %> &nbsp;&nbsp;&nbsp; 
+                            <% if (randomQuestion.level === 'easy') { %>
                                 <% if(userData.easyId.length>0){%>
                                     <% userData.easyId.forEach(function(id) { %>
-                                        <% if(id==que._id){%><i class="fa-solid fa-check"></i><%}%>
+                                        <% if(id==randomQuestion._id){%><i class="fa-solid fa-check"></i><%}%>
                                     <% }); %>
                                 <%}%>
-                            <% } else if (que.level === 'medium') { %>
+                            <% } else if (randomQuestion.level === 'medium') { %>
                                 <% if(userData.mediumId.length>0){%>
                                     <% userData.mediumId.forEach(function(id) { %>
-                                        <% if(id==que._id){%><i class="fa-solid fa-check"></i><%}%>
+                                        <% if(id==randomQuestion._id){%><i class="fa-solid fa-check"></i><%}%>
                                     <% }); %>
                                 <%}%>
-                            <% } else if (que.level === 'hard') { %>
+                            <% } else if (randomQuestion.level === 'hard') { %>
                                 <% if(userData.hardId.length>0){%>
                                     <% userData.hardId.forEach(function(id) { %>
-                                        <% if(id==que._id){%><i class="fa-solid fa-check"></i><%}%>
+                                        <% if(id==randomQuestion._id){%><i class="fa-solid fa-check"></i><%}%>
                                     <% }); %>
                                 <%}%>
                             <% } %>
                         </div>
                     </a>
                     <div class="markDone 
-                        <%= que.level === 'easy' ? 'easyQue' : 
-                            que.level === 'medium' ? 'mediumQue' : 
-                            que.level === 'hard' ? 'hardQue' : '' 
-                        %>" data-index="<%= que._id %>">
+                        <%= randomQuestion.level === 'easy' ? 'easyQue' : 
+                            randomQuestion.level === 'medium' ? 'mediumQue' : 
+                            randomQuestion.level === 'hard' ? 'hardQue' : '' 
+                        %>" data-index="<%= randomQuestion._id %>">
                         <i class="fa-solid fa-code"></i>
                     </div>
 
                     <!-- mark as done option -->
-                    <div id="markAsDone-<%= que.id %>" class="markAsDone">
-                        <form method="post" action="/LetsCode/<%=id%>/<%=que._id%>/solved/topicSolved?_method=PUT" id="form<%= que._id %>">
+                    <div id="markAsDone-<%= randomQuestion.id %>" class="markAsDone">
+                        <form method="post" action="/LetsCode/<%=userData._id%>/<%=randomQuestion._id%>/solved/randomSolved?_method=PUT" id="form<%= randomQuestion._id %>">
                             <h5 style="color: rgb(237, 174, 232);">Have you done this ?</h5>
                         </form>
                         <div>
-                            <button id="sub<%=que._id%>" type="submit" data-index="<%= que.idNo %>" class="doneBtn" style="background-color: rgb(92, 168, 168);"><i class="fa-solid fa-check"></i> Mark As Done</button>
-                            <button id="cancle<%=que._id%>" class="doneBtn cancleBtn" data-index="<%= que._id %>" style="background-color: rgb(219, 108, 138);"><i class="fa-solid fa-xmark"></i> Cancle</button>    
+                            <button id="sub<%=randomQuestion._id%>" type="submit" data-index="<%= randomQuestion.idNo %>" class="doneBtn" style="background-color: rgb(92, 168, 168);"><i class="fa-solid fa-check"></i> Mark As Done</button>
+                            <button id="cancle<%=randomQuestion._id%>" class="doneBtn cancleBtn" data-index="<%= randomQuestion._id %>" style="background-color: rgb(219, 108, 138);"><i class="fa-solid fa-xmark"></i> Cancle</button>    
                         </div>
                     </div>
                     <!-- mark as done option -->
                 </div>
                 
-            <% }); %>
         </div>
-    <% } else { %>
-        <div id="emptyState"><h2 style="text-align: center;padding: 1rem;">No questions available !</h2></div>
-    <% } %>
     <!-- Question list -->
 
     <!-- footer code -->
