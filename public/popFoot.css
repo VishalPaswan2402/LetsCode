@@ -1,0 +1,42 @@
+.show{
+    background-color: rgba(81, 81, 79, 0.283);
+    color: wheat;
+    border: none;
+    margin-top: 5px;
+}
+.alert-success::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: rgb(15, 179, 0);
+    animation: borderSuccess 3s forwards;
+}
+@keyframes borderSuccess {
+    0% {
+        width: 100%;
+    }
+    100% {
+        width: 0%;
+    }
+}
+.alert-danger::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: rgb(255, 0, 0);
+    animation: borderError 3s forwards;
+}
+@keyframes borderError {
+    0% {
+        width: 100%;
+    }
+    100% {
+        width: 0%;
+    }
+}
