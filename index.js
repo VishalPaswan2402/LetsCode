@@ -19,6 +19,8 @@ const allQuestion=require('./models/allQuestion');
 // const allQuestionList=require('./middlewares/saveQuestions')
 
 const session=require("express-session");
+const cookieParser = require('cookie-parser')
+app.use(cookieParser())
 
 const sessionOption={
     secret:'letsCode',
@@ -54,11 +56,73 @@ app.get('/',(req,res)=>{
 // signup page...
 app.post('/LetsCode/Signup',wrapAsync(async(req,res,next)=>{
     let{username,name,email,password1,password2}=req.body;
-    let newUser= new allUser({username:username,name:name,email:email,password:password1});
-    await newUser.save();
-    req.flash("success","Account created successfully.");
-    res.redirect(`/LetsCode/user/${username}`);
+    if(password1!=password2){
+        req.flash("error","Password not match, Please signup again.");
+        return res.redirect('/');
+    }
+    const otpGen = Math.floor(100000 + Math.random() * 900000);
+    console.log(otpGen);
+    // let newUser= new allUser({username:username,name:name,email:email,password:password1});
+    let newUserData = {
+        username: username,
+        name: name,
+        email: email,
+        password1: password1,
+        otp:otpGen
+    };
+    res.cookie('newUserData', JSON.stringify(newUserData), { httpOnly: true });
+    // await newUser.save();
+    // req.flash("success","Account created successfully.");
+    res.redirect('/LetsCode/VerifyOtp');
 }));
+
+//send otp on page
+app.get('/LetsCode/VerifyOtp',wrapAsync(async(req,res,next)=>{
+    let newUserData = req.cookies.newUserData ? JSON.parse(req.cookies.newUserData) : null;
+    let usernames=newUserData.username;
+    let otpGen=newUserData.otp;
+    console.log(otpGen);
+    // if (action === 'resend') {
+    //     const otp = Math.floor(1000 + Math.random() * 9000);
+    //     newUserData.otp = otp;
+    //     res.cookie('newUserData', JSON.stringify(newUserData), { httpOnly: true });
+    //     otpGen=otp;
+    //     console.log(`Resending OTP: ${otp} to ${newUserData.email}`);
+    // }
+    res.render('emailVerify.ejs',{usernames,otpGen})
+}));
+
+// resendOtp
+app.get('/LetsCode/resendOtp',wrapAsync(async(req,res,next)=>{
+    let newUserData = req.cookies.newUserData ? JSON.parse(req.cookies.newUserData) : null;
+    let usernames=newUserData.username;
+    let otpGen=newUserData.otp;
+    const otp = Math.floor(100000 + Math.random() * 900000);
+    newUserData.otp = otp;
+    res.cookie('newUserData', JSON.stringify(newUserData), { httpOnly: true });
+    otpGen=otp;
+    // console.log(`Resending OTP: ${otp} to ${newUserData.email}`);
+    res.redirect('/LetsCode/VerifyOtp');
+}))
+
+// email otp verify...
+app.post('/LetsCode/verifyEmail',wrapAsync(async(req,res,next)=>{
+    let {otp1}=req.body;
+    let newUserData = req.cookies.newUserData ? JSON.parse(req.cookies.newUserData) : null;
+    if (newUserData) {
+        console.log(newUserData.username, newUserData.name, newUserData.email, newUserData.password1,newUserData.otp);
+        if(newUserData.otp==otp1){
+            // let newUser= new allUser({username:username,name:name,email:email,password:password1});
+            // newUser.save();
+        }
+        // res.clearCookie('newUserData');
+        res.send("Received Data from Cookie");
+        
+    } else {
+        res.send("No data found in cookies.");
+    }
+}));
+
 
 // login...
 app.post('/LetsCode/login',wrapAsync(async(req,res,next)=>{
