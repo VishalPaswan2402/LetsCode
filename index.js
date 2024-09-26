@@ -55,71 +55,87 @@ app.get('/',(req,res)=>{
 
 // signup page...
 app.post('/LetsCode/Signup',wrapAsync(async(req,res,next)=>{
-    let{username,name,email,password1,password2}=req.body;
+    let{username,names,email,password1,password2}=req.body;
     if(password1!=password2){
         req.flash("error","Password not match, Please signup again.");
         return res.redirect('/');
     }
     const otpGen = Math.floor(100000 + Math.random() * 900000);
     console.log(otpGen);
-    // let newUser= new allUser({username:username,name:name,email:email,password:password1});
     let newUserData = {
         username: username,
-        name: name,
+        name: names,
         email: email,
         password1: password1,
-        otp:otpGen
+        otp:otpGen,
+        count:0
     };
-    res.cookie('newUserData', JSON.stringify(newUserData), { httpOnly: true });
-    // await newUser.save();
-    // req.flash("success","Account created successfully.");
+    req.session.newUserData = newUserData;
     res.redirect('/LetsCode/VerifyOtp');
 }));
 
 //send otp on page
 app.get('/LetsCode/VerifyOtp',wrapAsync(async(req,res,next)=>{
-    let newUserData = req.cookies.newUserData ? JSON.parse(req.cookies.newUserData) : null;
-    let usernames=newUserData.username;
-    let otpGen=newUserData.otp;
+    let newUserData = req.session.newUserData;
+    if (!newUserData) {
+        req.flash("error", "Session expired. Please sign up again.");
+        return res.redirect('/LetsCode/Signup');
+    }
+    let otpGen = newUserData.otp;
+    let email = newUserData.email;
     console.log(otpGen);
-    // if (action === 'resend') {
-    //     const otp = Math.floor(1000 + Math.random() * 9000);
-    //     newUserData.otp = otp;
-    //     res.cookie('newUserData', JSON.stringify(newUserData), { httpOnly: true });
-    //     otpGen=otp;
-    //     console.log(`Resending OTP: ${otp} to ${newUserData.email}`);
-    // }
-    res.render('emailVerify.ejs',{usernames,otpGen})
+    if(newUserData.count>2){
+        delete req.session.newUserData;
+        req.flash("error","You have exceeded the limit for sending OTPs. Please try again later.");
+        return res.redirect("/");
+    }
+    res.render('emailVerify.ejs',{email})
 }));
 
 // resendOtp
 app.get('/LetsCode/resendOtp',wrapAsync(async(req,res,next)=>{
-    let newUserData = req.cookies.newUserData ? JSON.parse(req.cookies.newUserData) : null;
-    let usernames=newUserData.username;
+    let newUserData = req.session.newUserData;
+    if (!newUserData) {
+        req.flash("error", "Session expired. Please sign up again.");
+        return res.redirect('/LetsCode/Signup');
+    }
     let otpGen=newUserData.otp;
     const otp = Math.floor(100000 + Math.random() * 900000);
     newUserData.otp = otp;
-    res.cookie('newUserData', JSON.stringify(newUserData), { httpOnly: true });
+    newUserData.count = (newUserData.count)+1;;
+    req.session.newUserData = newUserData;
     otpGen=otp;
-    // console.log(`Resending OTP: ${otp} to ${newUserData.email}`);
     res.redirect('/LetsCode/VerifyOtp');
 }))
 
 // email otp verify...
 app.post('/LetsCode/verifyEmail',wrapAsync(async(req,res,next)=>{
-    let {otp1}=req.body;
-    let newUserData = req.cookies.newUserData ? JSON.parse(req.cookies.newUserData) : null;
+    let {otp1,otp2,otp3,otp4,otp5,otp6}=req.body;
+    let eOtp=otp1+otp2+otp3+otp4+otp5+otp6;
+    console.log(eOtp);
+    let newUserData = req.session.newUserData;
     if (newUserData) {
         console.log(newUserData.username, newUserData.name, newUserData.email, newUserData.password1,newUserData.otp);
-        if(newUserData.otp==otp1){
-            // let newUser= new allUser({username:username,name:name,email:email,password:password1});
-            // newUser.save();
+        if(newUserData.otp==eOtp){
+            console.log("Same");
+            let newUser= new allUser({username:newUserData.username,name:newUserData.name,email:newUserData.email,password:newUserData.password1});
+            newUser.save();
+            let newAc=await allUser.findOne({username:newUserData.username});
+            let currUserName=newUserData.username;
+            delete req.session.newUserData;
+            req.flash("success","OTP verified & account created successfully.");
+            res.redirect(`/LetsCode/user/${currUserName}`);
+            
         }
-        // res.clearCookie('newUserData');
-        res.send("Received Data from Cookie");
+        else{
+            console.log("Diff");
+            req.flash("error","Incorrect OTP, please try again!");
+            res.redirect('/LetsCode/VerifyOtp');
+        }
         
     } else {
-        res.send("No data found in cookies.");
+        req.flash("error", "Session expired. Please sign up again.");
+        res.redirect('/');
     }
 }));
 

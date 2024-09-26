@@ -169,3 +169,42 @@ body{
     text-align: center;
     justify-content: center;
 }
+
+/* // for otp */
+.otpCard{
+    align-items: center;
+    text-align: center;
+    background-color: rgba(128, 128, 128, 0.276);
+    border: 2px solid wheat;
+    border-radius: 15px;
+    margin: 3rem auto;
+    color: wheat;
+}
+.otp-input {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    margin: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.otp-container {
+    display: flex;
+    justify-content: center;
+    /* margin-top: 50px; */
+}
+.timerCount{
+    width: 97%;
+    /* background-color: red; */
+    margin: 15px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.resentOtp{
+    color: wheat;
+}
+.resentOtp:hover{
+    color: rgb(143, 143, 226);
+}
