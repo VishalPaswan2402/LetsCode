@@ -181,7 +181,7 @@ body{
     color: wheat;
 }
 .otp-input {
-    width: 40px;
+    width: 40x;
     height: 40px;
     text-align: center;
     font-size: 18px;
@@ -207,4 +207,8 @@ body{
 }
 .resentOtp:hover{
     color: rgb(143, 143, 226);
+}
+.forgetData{
+    width: 300px;
+    margin: 15px auto;
 }

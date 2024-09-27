@@ -1,5 +1,5 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
 const port=8080;
 const path=require("path");
 app.use(express.urlencoded({extended:true}));
@@ -19,8 +19,8 @@ const allQuestion=require('./models/allQuestion');
 // const allQuestionList=require('./middlewares/saveQuestions')
 
 const session=require("express-session");
-const cookieParser = require('cookie-parser')
-app.use(cookieParser())
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
 
 const sessionOption={
     secret:'letsCode',
@@ -46,7 +46,7 @@ app.use((req,res,next)=>{
     res.locals.error=req.flash("error");
     // res.locals.currUsers=req.user;
     next();
-}) 
+});
 
 // Home page...
 app.get('/',(req,res)=>{
@@ -71,42 +71,72 @@ app.post('/LetsCode/Signup',wrapAsync(async(req,res,next)=>{
         count:0
     };
     req.session.newUserData = newUserData;
-    res.redirect('/LetsCode/VerifyOtp');
+    return res.redirect('/LetsCode/VerifyOtp');
 }));
 
 //send otp on page
 app.get('/LetsCode/VerifyOtp',wrapAsync(async(req,res,next)=>{
     let newUserData = req.session.newUserData;
-    if (!newUserData) {
-        req.flash("error", "Session expired. Please sign up again.");
-        return res.redirect('/LetsCode/Signup');
+    let findForgetData = req.session.findForgetData;
+    if(newUserData){
+        delete req.session.findForgetData;
+        let otpGen = newUserData.otp;
+        let email = newUserData.email;
+        console.log(otpGen);
+        if(newUserData.count>2){
+            delete req.session.newUserData;
+            req.flash("error","You have exceeded the limit for sending OTPs. Please try again later.");
+            return res.redirect("/");
+        }
+        return res.render('emailVerify.ejs',{email})
     }
-    let otpGen = newUserData.otp;
-    let email = newUserData.email;
-    console.log(otpGen);
-    if(newUserData.count>2){
+    else if(findForgetData){
         delete req.session.newUserData;
-        req.flash("error","You have exceeded the limit for sending OTPs. Please try again later.");
-        return res.redirect("/");
+        let otpGen = findForgetData.otp;
+        let email = findForgetData.email;
+        console.log(otpGen);
+        if(findForgetData.count>2){
+            delete req.session.findForgetData;
+            req.flash("error","You have exceeded the limit for sending OTPs. Please try again later.");
+            return res.redirect("/");
+        }
+        return res.render('emailVerify.ejs',{email});
     }
-    res.render('emailVerify.ejs',{email})
+    else{
+        req.flash("error", "Session expired. Please try again later.");
+        return res.redirect('/');
+    }
 }));
 
-// resendOtp
+// resend Otp
 app.get('/LetsCode/resendOtp',wrapAsync(async(req,res,next)=>{
     let newUserData = req.session.newUserData;
-    if (!newUserData) {
-        req.flash("error", "Session expired. Please sign up again.");
-        return res.redirect('/LetsCode/Signup');
+    let findForgetData = req.session.findForgetData;
+    if(newUserData){
+        let otpGen=newUserData.otp;
+        const otp = Math.floor(100000 + Math.random() * 900000);
+        newUserData.otp = otp;
+        newUserData.count = (newUserData.count)+1;;
+        req.session.newUserData = newUserData;
+        otpGen=otp;
+        req.flash('success',"New OTP send to your email.");
+        return res.redirect('/LetsCode/VerifyOtp');
     }
-    let otpGen=newUserData.otp;
-    const otp = Math.floor(100000 + Math.random() * 900000);
-    newUserData.otp = otp;
-    newUserData.count = (newUserData.count)+1;;
-    req.session.newUserData = newUserData;
-    otpGen=otp;
-    res.redirect('/LetsCode/VerifyOtp');
-}))
+    else if(findForgetData){
+        let otpGen=findForgetData.otp;
+        const otp = Math.floor(100000 + Math.random() * 900000);
+        findForgetData.otp = otp;
+        findForgetData.count = (findForgetData.count)+1;;
+        req.session.findForgetData = findForgetData;
+        otpGen=otp;
+        req.flash('success',"New OTP send to your email.");
+        return res.redirect('/LetsCode/VerifyOtp');
+    }
+    else{
+        req.flash("error", "Session expired. Please try again later.");
+        return res.redirect('/');
+    }
+}));
 
 // email otp verify...
 app.post('/LetsCode/verifyEmail',wrapAsync(async(req,res,next)=>{
@@ -114,28 +144,43 @@ app.post('/LetsCode/verifyEmail',wrapAsync(async(req,res,next)=>{
     let eOtp=otp1+otp2+otp3+otp4+otp5+otp6;
     console.log(eOtp);
     let newUserData = req.session.newUserData;
+    let findForgetData = req.session.findForgetData;
     if (newUserData) {
         console.log(newUserData.username, newUserData.name, newUserData.email, newUserData.password1,newUserData.otp);
         if(newUserData.otp==eOtp){
-            console.log("Same");
             let newUser= new allUser({username:newUserData.username,name:newUserData.name,email:newUserData.email,password:newUserData.password1});
             newUser.save();
-            let newAc=await allUser.findOne({username:newUserData.username});
             let currUserName=newUserData.username;
             delete req.session.newUserData;
             req.flash("success","OTP verified & account created successfully.");
-            res.redirect(`/LetsCode/user/${currUserName}`);
+            return res.redirect(`/LetsCode/user/${currUserName}`);
             
         }
         else{
-            console.log("Diff");
             req.flash("error","Incorrect OTP, please try again!");
-            res.redirect('/LetsCode/VerifyOtp');
+            return res.redirect('/LetsCode/VerifyOtp');
         }
-        
-    } else {
-        req.flash("error", "Session expired. Please sign up again.");
-        res.redirect('/');
+    }
+    else if(findForgetData){
+        delete req.session.newUserData;
+        let uId=findForgetData.findDataId;
+        let forOtp=findForgetData.otp;
+        if(forOtp==eOtp){
+            let forgetUser=await allUser.findById(uId);
+            console.log(forgetUser);
+            let uName=forgetUser.username;
+            let email=forgetUser.email;
+            req.flash("success","Please enter your new password.");
+            return res.render("changePassword.ejs",{uName,email});
+        }
+        else{
+            req.flash("error","Incorrect OTP, please try again!");
+            return res.redirect('/LetsCode/VerifyOtp');
+        }
+    }
+    else {
+        req.flash("error", "Session expired. Please try again later.");
+        return res.redirect('/');
     }
 }));
 
@@ -149,7 +194,7 @@ app.post('/LetsCode/login',wrapAsync(async(req,res,next)=>{
         return res.redirect('/');
     }
     req.flash("success","You are logged in successfully.");
-    res.redirect(`/LetsCode/user/${currentUser.username}`);
+    return res.redirect(`/LetsCode/user/${currentUser.username}`);
 }));
 
 
@@ -165,7 +210,7 @@ app.get('/LetsCode/user/:username',wrapAsync(async(req,res,next)=>{
     let easyPer=((userData.easySol/easyQue.length)*100).toFixed(1);
     let mediumPer=((userData.mediumSol/medQue.length)*100).toFixed(1);
     let hardPer=((userData.hardSol/hrdQue.length)*100).toFixed(1);
-    res.render("userPage.ejs",{userData,easyPer,mediumPer,hardPer,queLen});
+    return res.render("userPage.ejs",{userData,easyPer,mediumPer,hardPer,queLen});
 }));
 
 // show question...
@@ -173,7 +218,7 @@ app.get('/LetsCode/:id/topic/:Qtype',wrapAsync(async(req,res,next)=>{
     let {Qtype,id}=req.params;
     let ques=await allQuestion.find({topic:Qtype});
     let userData=await allUser.findById(id);
-    res.render('questionPage.ejs',{ques,id,userData})
+    return res.render('questionPage.ejs',{ques,id,userData})
 }));
 
 // marked sas done...
@@ -252,9 +297,9 @@ app.put('/LetsCode/:id/:qId/solved/:solvedType',wrapAsync(async(req,res,next)=>{
         }
     }
     if(solvedType==="topicSolved"){
-        res.redirect(`/LetsCode/${id}/topic/${findQue.topic}`);
+        return res.redirect(`/LetsCode/${id}/topic/${findQue.topic}`);
     }else{
-        res.redirect(`/LetsCode/user/${findData.username}`);
+        return res.redirect(`/LetsCode/user/${findData.username}`);
     }
 }));
 
@@ -274,7 +319,7 @@ app.put('/LetsCode/randomQue/Pick/:id',wrapAsync(async(req,res,next)=>{
         randomQuestionId=allQue[randomNum]._id;
     }
     req.flash("success","Here’s a randomly generated question for you.");
-    res.redirect(`/LetsCode/randomQue/${randomQuestionId}/Picked/user/${id}/`);
+    return res.redirect(`/LetsCode/randomQue/${randomQuestionId}/Picked/user/${id}/`);
 }));
 
 // random Question page render...
@@ -282,8 +327,58 @@ app.get('/LetsCode/randomQue/:qId/Picked/user/:id/',wrapAsync(async(req,res,next
     let{qId,id}=req.params;
     let userData=await allUser.findById(id);
     let randomQuestion=await allQuestion.findById(qId);
-    res.render(`randomQuestionPage.ejs`,{randomQuestion,userData});
-}))
+    return res.render(`randomQuestionPage.ejs`,{randomQuestion,userData});
+}));
+
+// forget password page
+app.get('/LetsCode/Forget/Password',wrapAsync(async(req,res,next)=>{
+    return res.render('forgetPassword.ejs');
+}));
+
+//get user data from forgetpage
+app.post('/LetsCode/Forget/Password/Verify',wrapAsync(async(req,res,next)=>{
+    let {username,email}=req.body;
+    console.log(username,email);
+    let findData=await allUser.findOne({username:username,email:email});
+    if(findData){
+        console.log("data find");
+        const otpGen = Math.floor(100000 + Math.random() * 900000);
+        let findForgetData={
+            findDataId:findData._id,
+            email:findData.email,
+            otp:otpGen,
+            count:0
+        }
+        req.session.findForgetData=findForgetData;
+        return res.redirect('/LetsCode/VerifyOtp');
+    }
+    else{
+        req.flash("error", "No user found!");
+        return res.redirect('/');
+    }
+}));
+
+// change password...
+app.put('/LetsCode/Forget/Password/Change',wrapAsync(async(req,res,next)=>{
+    let {passwordSet}=req.body;
+    let findForgetData=req.session.findForgetData;
+    if(findForgetData){
+        let id=findForgetData.findDataId;
+        delete req.session.newUserData;
+        delete req.session.findForgetData;
+        let currUserData=await allUser.findById(id);
+        let userName=currUserData.username;
+        let updateData=await allUser.findByIdAndUpdate(id,{password:passwordSet});
+        updateData.save();
+        req.flash('success',"Password changed successfully.");
+        return res.redirect(`/LetsCode/user/${userName}`);
+    }
+    else{
+        req.flash("error", "Session expired. Please try again later.");
+        return res.redirect('/');
+    }
+}));
+
 
 
 
