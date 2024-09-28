@@ -70,6 +70,25 @@
         <!-- user profile data -->
 
 
+        <!-- user question solved data -->
+         <div id="solvedQues">
+            <div class="solvedCircle" id="easyHov">
+                <div class="perData"><%=userData.easySol%>/<%=eLen%></div>
+            </div>
+
+            <div class="solvedCircle" id="medHov">
+                <div class="perData"><%=userData.mediumSol%>/<%=mLen%></div>
+            </div>
+
+            <div class="solvedCircle" id="hardHov">
+                <div class="perData"><%=userData.hardSol%>/<%=hLen%></div>
+            </div>
+            
+         </div>
+        <!-- user question solved data -->
+
+
+
         <!-- question tags data -->
         <div id="queTags">
             <a href="/LetsCode/<%=userData._id%>/topic/Array" target="_blank" class="queStyle">Array</a>

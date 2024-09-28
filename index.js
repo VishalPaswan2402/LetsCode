@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 const methodOverride = require('method-override');
 app.use(methodOverride('_method'));
+const {userSchema}=require('./middlewares/schemaValidate');
 const expressError=require('./utility/expressError');
 const wrapAsync=require('./utility/wrapAsync');
 const mongoose = require('mongoose');
@@ -48,25 +49,46 @@ app.use((req,res,next)=>{
     next();
 });
 
+const validateUser=(req,res,next)=>{
+    let{error}=userSchema.validate(req.body);
+    if(error){
+        let errMsg=error.details.map((el)=>el.message).join(",");
+        throw new expressError(400,errMsg);
+    }
+    else{
+        next();
+    }
+};
+
 // Home page...
 app.get('/',(req,res)=>{
     res.render("homePage.ejs");
 });
 
 // signup page...
-app.post('/LetsCode/Signup',wrapAsync(async(req,res,next)=>{
-    let{username,names,email,password1,password2}=req.body;
-    if(password1!=password2){
+app.post('/LetsCode/Signup',validateUser,wrapAsync(async(req,res,next)=>{
+    let{username,name,email,password,password2}=req.body;
+    if(password!=password2){
         req.flash("error","Password not match, Please signup again.");
+        return res.redirect('/');
+    }
+    let oldUser=await allUser.findOne({username:username});
+    if(oldUser){
+        req.flash("error","User with this username already exist.");
+        return res.redirect('/');
+    }
+    let oldEmail=await allUser.findOne({email:email});
+    if(oldEmail){
+        req.flash("error","User with this E-mail already exist.");
         return res.redirect('/');
     }
     const otpGen = Math.floor(100000 + Math.random() * 900000);
     console.log(otpGen);
     let newUserData = {
         username: username,
-        name: names,
+        names: name,
         email: email,
-        password1: password1,
+        password1: password,
         otp:otpGen,
         count:0
     };
@@ -146,9 +168,9 @@ app.post('/LetsCode/verifyEmail',wrapAsync(async(req,res,next)=>{
     let newUserData = req.session.newUserData;
     let findForgetData = req.session.findForgetData;
     if (newUserData) {
-        console.log(newUserData.username, newUserData.name, newUserData.email, newUserData.password1,newUserData.otp);
+        console.log(newUserData.username, newUserData.names, newUserData.email, newUserData.password1,newUserData.otp);
         if(newUserData.otp==eOtp){
-            let newUser= new allUser({username:newUserData.username,name:newUserData.name,email:newUserData.email,password:newUserData.password1});
+            let newUser= new allUser({username:newUserData.username,name:newUserData.names,email:newUserData.email,password:newUserData.password1});
             newUser.save();
             let currUserName=newUserData.username;
             delete req.session.newUserData;
@@ -207,10 +229,13 @@ app.get('/LetsCode/user/:username',wrapAsync(async(req,res,next)=>{
     let easyQue=await allQuestion.find({level:"easy"});
     let medQue=await allQuestion.find({level:"medium"});
     let hrdQue=await allQuestion.find({level:"hard"});
+    let eLen=easyQue.length;
+    let mLen=medQue.length;
+    let hLen=hrdQue.length;
     let easyPer=((userData.easySol/easyQue.length)*100).toFixed(1);
     let mediumPer=((userData.mediumSol/medQue.length)*100).toFixed(1);
     let hardPer=((userData.hardSol/hrdQue.length)*100).toFixed(1);
-    return res.render("userPage.ejs",{userData,easyPer,mediumPer,hardPer,queLen});
+    return res.render("userPage.ejs",{userData,eLen,easyPer,mLen,mediumPer,hLen,hardPer,queLen});
 }));
 
 // show question...
