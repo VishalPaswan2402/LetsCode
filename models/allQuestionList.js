@@ -5,7 +5,6 @@ const allQuestionList=[
       "urlLink": "https://leetcode.com/problems/two-sum/",
       "topic": "Array",
       "level": "easy",
-      "done": false
     },
     {
       "questionName": "Best Time to Buy and Sell Stock",
@@ -13,7 +12,6 @@ const allQuestionList=[
       "urlLink": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/",
       "topic": "Array",
       "level": "easy",
-      "done": false
     },
     {
       "questionName": "Remove Duplicates from Sorted Array",
@@ -21,7 +19,6 @@ const allQuestionList=[
       "urlLink": "https://leetcode.com/problems/remove-duplicates-from-sorted-array/",
       "topic": "Array",
       "level": "easy",
-      "done": false
     },
     {
       "questionName": "Contains Duplicate",
@@ -29,7 +26,6 @@ const allQuestionList=[
       "urlLink": "https://leetcode.com/problems/contains-duplicate/",
       "topic": "Array",
       "level": "easy",
-      "done": false
     },
     {
       "questionName": "Maximum Subarray",
@@ -37,7 +33,6 @@ const allQuestionList=[
       "urlLink": "https://leetcode.com/problems/maximum-subarray/",
       "topic": "Array",
       "level": "easy",
-      "done": false
     },
     {
       "questionName": "Move Zeroes",
@@ -45,7 +40,6 @@ const allQuestionList=[
       "urlLink": "https://leetcode.com/problems/move-zeroes/",
       "topic": "Array",
       "level": "easy",
-      "done": false
     },
     {
       "questionName": "3Sum",
@@ -53,7 +47,6 @@ const allQuestionList=[
       "urlLink": "https://leetcode.com/problems/3sum/",
       "topic": "Array",
       "level": "medium",
-      "done": false
     },
     {
       "questionName": "Product of Array Except Self",
@@ -61,7 +54,6 @@ const allQuestionList=[
       "urlLink": "https://leetcode.com/problems/product-of-array-except-self/",
       "topic": "Array",
       "level": "medium",
-      "done": false
     },
     {
       "questionName": "Subarray Sum Equals K",
@@ -69,7 +61,6 @@ const allQuestionList=[
       "urlLink": "https://leetcode.com/problems/subarray-sum-equals-k/",
       "topic": "Array",
       "level": "medium",
-      "done": false
     },
     {
       "questionName": "Find Minimum in Rotated Sorted Array",
@@ -77,7 +68,6 @@ const allQuestionList=[
       "urlLink": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
       "topic": "Array",
       "level": "medium",
-      "done": false
     },
     {
       "questionName": "Longest Consecutive Sequence",
@@ -85,7 +75,6 @@ const allQuestionList=[
       "urlLink": "https://leetcode.com/problems/longest-consecutive-sequence/",
       "topic": "Array",
       "level": "medium",
-      "done": false
     },
     {
       "questionName": "Trapping Rain Water",
@@ -93,7 +82,6 @@ const allQuestionList=[
       "urlLink": "https://leetcode.com/problems/trapping-rain-water/",
       "topic": "Array",
       "level": "hard",
-      "done": false
     },
     {
       "questionName": "Merge k Sorted Lists",
@@ -101,7 +89,6 @@ const allQuestionList=[
       "urlLink": "https://leetcode.com/problems/merge-k-sorted-lists/",
       "topic": "Array",
       "level": "hard",
-      "done": false
     },
     {
       "questionName": "Sliding Window Maximum",
@@ -109,7 +96,6 @@ const allQuestionList=[
       "urlLink": "https://leetcode.com/problems/sliding-window-maximum/",
       "topic": "Array",
       "level": "hard",
-      "done": false
     },
     {
       "questionName": "Median of Two Sorted Arrays",
@@ -117,7 +103,6 @@ const allQuestionList=[
       "urlLink": "https://leetcode.com/problems/median-of-two-sorted-arrays/",
       "topic": "Array",
       "level": "hard",
-      "done": false
     },
 
     // 2D array ...
@@ -127,7 +112,6 @@ const allQuestionList=[
         "urlLink": "https://leetcode.com/problems/flood-fill/",
         "topic": "2D Array",
         "level": "easy",
-        "done": false
       },
       {
         "questionName": "Matrix Diagonal Sum",
@@ -135,7 +119,6 @@ const allQuestionList=[
         "urlLink": "https://leetcode.com/problems/matrix-diagonal-sum/",
         "topic": "2D Array",
         "level": "easy",
-        "done": false
       },
       {
         "questionName": "Toeplitz Matrix",
@@ -143,7 +126,6 @@ const allQuestionList=[
         "urlLink": "https://leetcode.com/problems/toeplitz-matrix/",
         "topic": "2D Array",
         "level": "easy",
-        "done": false
       },
       {
         "questionName": "Matrix Reshape",
@@ -151,7 +133,6 @@ const allQuestionList=[
         "urlLink": "https://leetcode.com/problems/reshape-the-matrix/",
         "topic": "2D Array",
         "level": "easy",
-        "done": false
       },
       {
         "questionName": "Island Perimeter",
@@ -159,7 +140,6 @@ const allQuestionList=[
         "urlLink": "https://leetcode.com/problems/island-perimeter/",
         "topic": "2D Array",
         "level": "easy",
-        "done": false
       },
       {
         "questionName": "Check if Every Row and Column Contains All Numbers",
@@ -167,7 +147,6 @@ const allQuestionList=[
         "urlLink": "https://leetcode.com/problems/check-if-every-row-and-column-contains-all-numbers/",
         "topic": "2D Array",
         "level": "easy",
-        "done": false
       },
       {
         "questionName": "Set Matrix Zeroes",
@@ -175,7 +154,6 @@ const allQuestionList=[
         "urlLink": "https://leetcode.com/problems/set-matrix-zeroes/",
         "topic": "2D Array",
         "level": "medium",
-        "done": false
       },
       {
         "questionName": "Spiral Matrix",
@@ -183,7 +161,6 @@ const allQuestionList=[
         "urlLink": "https://leetcode.com/problems/spiral-matrix/",
         "topic": "2D Array",
         "level": "medium",
-        "done": false
       },
       {
         "questionName": "Search a 2D Matrix",
@@ -191,7 +168,6 @@ const allQuestionList=[
         "urlLink": "https://leetcode.com/problems/search-a-2d-matrix/",
         "topic": "2D Array",
         "level": "medium",
-        "done": false
       },
       {
         "questionName": "Diagonal Traverse",
@@ -199,7 +175,6 @@ const allQuestionList=[
         "urlLink": "https://leetcode.com/problems/diagonal-traverse/",
         "topic": "2D Array",
         "level": "medium",
-        "done": false
       },
       {
         "questionName": "Kth Smallest Element in a Sorted Matrix",
@@ -207,7 +182,6 @@ const allQuestionList=[
         "urlLink": "https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/",
         "topic": "2D Array",
         "level": "medium",
-        "done": false
       },
       {
         "questionName": "Maximal Rectangle",
@@ -215,7 +189,6 @@ const allQuestionList=[
         "urlLink": "https://leetcode.com/problems/maximal-rectangle/",
         "topic": "2D Array",
         "level": "hard",
-        "done": false
       },
       {
         "questionName": "Word Search II",
@@ -223,7 +196,6 @@ const allQuestionList=[
         "urlLink": "https://leetcode.com/problems/word-search-ii/",
         "topic": "2D Array",
         "level": "hard",
-        "done": false
       },
       {
         "questionName": "Max Sum of Rectangle No Larger Than K",
@@ -231,7 +203,6 @@ const allQuestionList=[
         "urlLink": "https://leetcode.com/problems/max-sum-of-rectangle-no-larger-than-k/",
         "topic": "2D Array",
         "level": "hard",
-        "done": false
       },
       {
         "questionName": "Longest Increasing Path in a Matrix",
@@ -239,7 +210,6 @@ const allQuestionList=[
         "urlLink": "https://leetcode.com/problems/longest-increasing-path-in-a-matrix/",
         "topic": "2D Array",
         "level": "hard",
-        "done": false
       }
 ]
   

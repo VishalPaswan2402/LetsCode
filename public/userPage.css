@@ -8,6 +8,14 @@ body{
     background-color: rgb(36, 36, 36);
     color: wheat;
 }
+#overlay{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: rgba(121, 121, 115, 0.521);
+    z-index: 500;
+    display: none;
+}
 #navbarDiv{
     height: 3.5rem;
     width: 100%;
@@ -78,13 +86,121 @@ body{
     justify-content: space-between;
 }
 .profImg{
-    height: 80%;
-    width: 33%;
-    border-radius: 47%;
-    border: 2px solid wheat;
-    background-color: rgb(177, 177, 107);
-    margin-left: 5px;
+    height: 69.5%;
+    width: 30%;
+    border-radius: 25%;
+    border: 2px solid rgb(177, 166, 144);
+    /* border-top: 2px solid wheat; */
+    /* background-color: rgb(201, 201, 25); */
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    cursor: pointer;
 }
+.cameraIcon {
+    height: 100%;
+    width: 100%;
+    border-radius: 25%;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.589);
+    /* position: absolute; */
+    bottom: 10px;  /* Adjust positioning as needed */
+    right: 10px;
+    font-size: 24px;
+    color: wheat;
+    opacity: 0;  /* Initially hidden */
+    transition: opacity 0.3s ease-in-out;
+}
+.profImg:hover .cameraIcon{
+    opacity: 1;
+}
+#profileChange{
+    height: 15rem;
+    width: 15rem;
+    background-color: rgb(99, 77, 77);
+    position: absolute;
+    left: 24%;
+    top: 5rem;
+    /* margin: auto; */
+    z-index: 5000;
+    border-radius: 10px;
+    border: 2px solid rgb(114, 139, 144);
+    display: none;
+}
+.closeProfBtn:hover{
+    color: red;
+}
+.topDp{
+    height: 17%;
+    width: 100%;
+    /* background-color: rebeccapurple; */
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-evenly;
+}
+#bottomDp{
+    height: 66%;
+    width: 100%;
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+}
+.cornerDp{
+    height: 100%;
+    width: 20%;
+    /* background-color: green; */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.middleDp{
+    height: 100%;
+    width: 60%;
+    /* background-color: orangered; */
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.dpCircle{
+    height: 70%;
+    width: 75%;
+    border-radius: 20%;
+    /* background-color: rgb(72, 157, 218); */
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: 2px solid wheat;
+}
+.dp{
+    height: 17%;
+    width: 80%;
+    /* background-color: yellowgreen; */
+    border: 2px solid rgb(181, 191, 202);
+    text-align: center;
+    cursor: pointer;
+}
+#profileNo{
+    display: none;
+}
+.changeProfNo{
+    font-size: 1.2rem;
+    width: 12rem;
+    border: 2px solid wheat;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+
+
+
 .userName{
     height: 98%;
     width: 63%;

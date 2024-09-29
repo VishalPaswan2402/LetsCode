@@ -17,7 +17,9 @@ const wrapAsync=require('./utility/wrapAsync');
 const mongoose = require('mongoose');
 const allUser=require('./models/user');
 const allQuestion=require('./models/allQuestion');
-// const allQuestionList=require('./middlewares/saveQuestions')
+const allProfile=require('./models/allProfile');
+// const allQuestionList=require('./middlewares/saveQuestions');
+// const allProfileDp=require('./middlewares/saveProfileDp');
 
 const session=require("express-session");
 const cookieParser = require('cookie-parser');
@@ -168,9 +170,10 @@ app.post('/LetsCode/verifyEmail',wrapAsync(async(req,res,next)=>{
     let newUserData = req.session.newUserData;
     let findForgetData = req.session.findForgetData;
     if (newUserData) {
-        console.log(newUserData.username, newUserData.names, newUserData.email, newUserData.password1,newUserData.otp);
+        const dp=Math.floor(Math.random()*10);
+        let allDps=await allProfile.find();
         if(newUserData.otp==eOtp){
-            let newUser= new allUser({username:newUserData.username,name:newUserData.names,email:newUserData.email,password:newUserData.password1});
+            let newUser= new allUser({username:newUserData.username,name:newUserData.names,email:newUserData.email,password:newUserData.password1,profileImage:allDps[dp].profileLink});
             newUser.save();
             let currUserName=newUserData.username;
             delete req.session.newUserData;
@@ -404,6 +407,29 @@ app.put('/LetsCode/Forget/Password/Change',wrapAsync(async(req,res,next)=>{
     }
 }));
 
+// change profile...
+app.put('/LetsCode/Change/Profile/:id',wrapAsync(async(req,res,next)=>{
+    let {id}=req.params;
+    let {profNumber}=req.body;
+    let profType=profNumber.charAt(0);
+    let profNum=parseInt(profNumber.charAt(1));
+    let userData=await allUser.findById(id);
+    if(profType==='b'){
+        let profUp='boy'+profNum;
+        let boysDp=await allProfile.findOne({dpType:profUp});
+        let applyLink=boysDp.profileLink;
+        let updateProf=await allUser.findByIdAndUpdate(id,{profileImage:applyLink});
+        updateProf.save();
+    }
+    else{
+        let profUp='girl'+profNum;
+        let girlsDp=await allProfile.findOne({dpType:profUp});
+        let applyLink=girlsDp.profileLink;
+        let updateProf=await allUser.findByIdAndUpdate(id,{profileImage:applyLink});
+        updateProf.save();
+    }
+    return res.redirect(`/LetsCode/user/${userData.username}`);
+}));
 
 
 

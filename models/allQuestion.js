@@ -21,10 +21,6 @@ const allQuestionSchema=new Schema({
     urlLink:{
         type:String,
         required:true
-    },
-    done:{
-        type:Boolean,
-        required:true
     }
 });
 

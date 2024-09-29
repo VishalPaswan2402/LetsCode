@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/popFoot.css">
 </head>
 <body>
+    <div id="overlay"></div>
     <div id="navbarDiv">
         <div id="webName">
             <div id="logo"></div>
@@ -35,11 +36,44 @@
     <%}%>
   <!-- Flash message -->
 
+  <!-- Profile change option -->
+  <div id="profileChange">
+    <div class="topDp">Change Your Profile <i class="fa-solid fa-xmark closeProfBtn"></i></div>
+    <div id="bottomDp">
+        <div class="cornerDp">
+            <div id="b1" class="dp">01</div>
+            <div id="b2" class="dp">02</div>
+            <div id="b3" class="dp">03</div>
+            <div id="b4" class="dp">04</div>
+            <div id="b5" class="dp">05</div>
+        </div>
+        <div class="middleDp">
+            <div class="dpCircle"></div>
+        </div>
+        <div class="cornerDp">
+            <div id="g1" class="dp">01</div>
+            <div id="g2" class="dp">02</div>
+            <div id="g3" class="dp">03</div>
+            <div id="g4" class="dp">04</div>
+            <div id="g5" class="dp">05</div>
+        </div>
+    </div>
+    <div class="topDp">
+        <form method="post" action="/LetsCode/Change/Profile/<%=userData._id%>?_method=PUT">
+            <input type="text" name="profNumber" id="profileNo" value="b1">
+            <button type="submit" class="changeProfNo">Update Profile</button>
+        </form>
+    </div>
+  </div>
+  <!-- Profile change option -->
+
     <div id="dataContainer">
         <!-- user profile data -->
         <div id="topUserData">
             <div id="userCard" class="userBox">
-                <div class="profImg"></div>
+                <div id="profChangeBtn" class="profImg" style="background-image: url(<%=userData.profileImage%>);">
+                    <i class="fa-solid fa-camera cameraIcon"></i>
+                </div>
                 <div class="userName">
                     <h6><%=userData.name%></h6>
                     <h6><%=userData.username%></h6>
@@ -87,8 +121,6 @@
          </div>
         <!-- user question solved data -->
 
-
-
         <!-- question tags data -->
         <div id="queTags">
             <a href="/LetsCode/<%=userData._id%>/topic/Array" target="_blank" class="queStyle">Array</a>
@@ -120,10 +152,8 @@
                 </select>
                 <button type="submit" class="searchRandomBtn"><i class="fa-solid fa-shuffle fa-flip randomLog"></i> Pick Question</button>
             </form>
-            <!-- <a href="#" target="_blank" style="text-decoration: none;"><p class="generatedQue">Random question is going to displayed here...</p></a> -->
         </div>
         <!-- question tags data -->
-
     </div>
 
     <!-- footer code -->

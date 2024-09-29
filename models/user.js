@@ -20,6 +20,10 @@ const userSchema=new Schema({
         type:String,
         required:true
     },
+    profileImage:{
+        type:String,
+        require:true
+    },
     solvedQues:{
         type:Number,
         default:0
