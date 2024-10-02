@@ -2,10 +2,6 @@ const {model}=require ('mongoose');
 const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
 const allQuestionSchema=new Schema({
-    idNo:{
-        type:String,
-        required:true
-    },
     questionName:{
         type:String,
         required:true

@@ -1,0 +1,337 @@
+@media screen and (min-width: 460px) and (max-width: 800px) {
+    .alertTxt{
+        font-size: 1rem;
+    }
+    #dataContainer{
+        width: 100%;
+    }
+    #topUserData{
+        justify-content: space-evenly;
+        margin: auto;
+    }
+    .queSolBox{
+        width: 90%;
+    }
+    .userBox{
+        margin-bottom: 15px;
+    }
+    #solvedQues{
+        width: 90%;
+    }
+    #queTags{
+        width: 90%;
+        margin: 1rem auto;
+    }
+    #randomQueBox{
+        width: 90%;
+        margin: auto;
+    }
+    #footer{
+        width: 90%;
+        margin: 1rem auto;
+    }
+    .footBox{
+        width: 90%;
+        margin: auto;
+    }
+    .circleBox{
+        height: 25px;
+        width: 25px;
+    }
+    .iconSize{
+        font-size: 0.8rem;
+    }
+    .quesDone{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .queTag{
+        padding: 10px;
+        font-size: 1rem;
+        margin: 10px auto;
+    }
+    .queLink{
+        width: 85%;
+        margin: auto;
+    }
+    .markDone{
+        height: 46px;
+        width: 43px;
+        margin: auto;
+    }
+    .doneOpt{
+        font-size: 1.2rem;
+    }
+    .designedTag {
+        width: 100%;
+        font-size: 0.8rem;
+    }
+    .coderTry{
+        font-size: 0.95rem;
+    }
+    .doneBtn{
+        padding: 10px;
+        margin: 3px;
+        border-radius: 10px;
+        font-size: 0.8rem;
+    }
+    .doneThis{
+        padding-top: 7px;
+        font-size: 1rem;
+    }
+    .markAsDone{
+        height: 5.5rem;
+        width: 14rem;
+        left: 11rem;
+        margin: auto;
+    }
+}
+@media screen and (min-width: 360px) and (max-width: 460px) {
+    .alertTxt{
+        font-size: 0.9rem;
+    }
+    #dataContainer{
+        width: 100%;
+    }
+    #topUserData{
+        justify-content: space-evenly;
+        margin: auto;
+    }
+    .queSolBox{
+        width: 98%;
+    }
+    .userBox{
+        margin-bottom: 15px;
+    }
+    .barWidth{
+        width: 80%;
+    }
+    #solvedQues{
+        width: 98%;
+    }
+    #queTags{
+        width: 98%;
+        margin: 1rem auto;
+    }
+    #randomQueBox{
+        width: 98%;
+        margin: auto;
+    }
+    #footer{
+        width: 100%;
+        margin: 1rem auto;
+    }
+    .footBox{
+        width: 100%;
+        margin: auto;
+    }
+    .circleBox{
+        height: 25px;
+        width: 25px;
+    }
+    .iconSize{
+        font-size: 0.8rem;
+    }
+    .quesDone{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .queTag{
+        padding: 8px;
+        font-size: 0.9rem;
+        margin: 10px auto;
+    }
+    .queLink{
+        width: 85%;
+        margin: auto;
+    }
+    .markDone{
+        height: 40px;
+        width: 40px;
+        margin: auto;
+    }
+    .doneOpt{
+        font-size: 1rem;
+    }
+    .designedTag {
+        width: 100%;
+        font-size: 0.75rem;
+    }
+    .coderTry{
+        font-size: 0.85rem;
+    }
+    .doneBtn{
+        padding: 8px;
+        margin: 3px;
+        border-radius: 10px;
+        font-size: 0.75rem;
+    }
+    .doneThis{
+        padding-top: 9px;
+        font-size: 0.9rem;
+    }
+    .markAsDone{
+        height: 5.3rem;
+        width: 12rem;
+        left: 5.2rem;
+        margin: auto;
+    }
+    #profileChange{
+        left: 17%;
+    }
+    .homeContentPart{
+        width: 90%;
+        margin: 2rem auto;
+    }
+    .inputData{
+        width: 90%;
+        font-size: 0.9rem;
+    }
+    .haveAccount{
+        width: 90%;
+        font-size: 0.8rem;
+    }
+    .otpCard{
+        width: 80%;
+    }
+    .forgetData{
+        width: 250px;
+    }
+    .otpVerify{
+        width: 10rem;
+    }
+    .otp-input {
+        width: 35px;
+        height: 40px;
+        margin: 0 4px;
+    }
+    .otpCnf{
+        width: 12rem;
+    }
+}
+@media screen and (min-width: 280px) and (max-width: 360px) {
+    .alertTxt{
+        font-size: 0.8rem;
+    }
+    #dataContainer{
+        width: 100%;
+    }
+    #topUserData{
+        justify-content: space-evenly;
+        margin: auto;
+    }
+    .queSolBox{
+        width: 98%;
+    }
+    .barWidth{
+        width: 78%;
+    }
+    .userBox{
+        margin-bottom: 15px;
+    }
+    #solvedQues{
+        width: 98%;
+    }
+    #queTags{
+        width: 98%;
+        margin: 1rem auto;
+    }
+    #randomQueBox{
+        width: 98%;
+        margin: auto;
+    }
+    #footer{
+        width: 100%;
+        margin: 1rem auto;
+    }
+    .footBox{
+        width: 100%;
+        margin: auto;
+    }
+    .circleBox{
+        height: 25px;
+        width: 25px;
+    }
+    .iconSize{
+        font-size: 0.8rem;
+    }
+    .quesDone{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .queTag{
+        padding: 7px;
+        font-size: 0.8rem;
+        margin: 8px auto;
+    }
+    .queLink{
+        width: 85%;
+        margin: auto;
+    }
+    .markDone{
+        height: 36px;
+        width: 36px;
+        margin: auto;
+    }
+    .doneOpt{
+        font-size: 0.9rem;
+    }
+    .designedTag {
+        width: 100%;
+        font-size: 0.7rem;
+    }
+    .coderTry{
+        font-size: 0.8rem;
+    }
+    .doneBtn{
+        padding: 8px;
+        margin: 3px;
+        border-radius: 10px;
+        font-size: 0.7rem;
+    }
+    .doneThis{
+        padding-top: 9px;
+        font-size: 0.9rem;
+    }
+    .markAsDone{
+        height: 5.3rem;
+        width: 11rem;
+        left: 3.2rem;
+        margin: auto;
+    }
+    #profileChange{
+        left: 12%;
+    }
+    .homeContentPart{
+        width: 98%;
+        margin: 2rem auto;
+    }
+    .inputData{
+        width: 90%;
+        font-size: 0.9rem;
+    }
+    .haveAccount{
+        width: 90%;
+        font-size: 0.8rem;
+    }
+    .otpCard{
+        width: 95%;
+    }
+    .forgetData{
+        width: 250px;
+    }
+    .otpVerify{
+        width: 10rem;
+    }
+    .otp-input {
+        width: 35px;
+        height: 40px;
+        margin: 0 4px;
+    }
+    .otpCnf{
+        width: 12rem;
+    }
+}

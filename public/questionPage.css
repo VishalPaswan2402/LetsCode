@@ -25,7 +25,6 @@ body{
 #logo{
     height: 70%;
     width: 2.7rem;
-    /* background-color: red; */
     background-image: url(logo2.png);
     background-repeat: no-repeat;
     background-size: contain;
@@ -38,9 +37,8 @@ body{
     padding-right: 2rem;
 }
 #mode{
-    height: 2.5rem;
-    width: 2.5rem;
-    /* background-color: rgb(151, 151, 151); */
+    height: 2.3rem;
+    width: 2.3rem;
     margin-right: 1.5rem;
     border-radius: 20px;
     color: wheat;
@@ -49,21 +47,28 @@ body{
     align-items: center;
     text-align: center;
     justify-content: space-evenly;
+    cursor: pointer;
 }
 .modeIcon{
-    font-size: 1.4rem;
+    font-size: 1.1rem;
 }
 .coderTry{
     text-align: center;
 }
+#blockPg{
+    height: 100%;
+    width: 100%;
+    background-color: rgba(68, 66, 66, 0.776);
+    position: fixed;
+    margin: 0;
+    z-index: 900;
+    display: none;
+}
 #dataContainer{
-    /* height: 700px; */
     width: 50rem;
-    /* background-color: gray; */
     margin: 0.2rem auto;
 }
 .queTag{
-    background-color: rgb(224, 156, 156);
     border-radius: 10px;
     padding: 10px;
     font-size: 1.2rem;
@@ -74,7 +79,7 @@ body{
     background-color: rgba(144, 239, 131, 0.37);
 }
 .mediumQue{
-    background-color: rgba(210, 236, 110, 0.418);
+    background-color: rgba(126, 236, 192, 0.418);
 }
 .hardQue{
     background-color: rgba(249, 152, 153, 0.404);
@@ -95,7 +100,6 @@ body{
 .markDone{
     height: 50px;
     width: 45px;
-    /* background-color: red; */
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -106,9 +110,13 @@ body{
 .markDone:hover{
     background-color: rgba(78, 77, 77, 0.61);
 }
+.doneThis{
+    padding-top: 7px;
+}
 .markAsDone{
     background-color: rgb(74, 71, 71);
-    height: 5.5rem;
+    border: 2px solid wheat;
+    height: 6rem;
     width: 17rem;
     display: flex;
     flex-wrap: wrap;
@@ -126,56 +134,17 @@ body{
     margin: 3px;
     border-radius: 10px;
 }
-#blockPg{
-    height: 100%;
-    width: 100%;
-    background-color: rgba(234, 230, 230, 0.1);
-    position: fixed;
-    margin: 0;
-    z-index: 900;
-    display: none;
-}
-
-/* footer */
-#footer{
-    /* height: 5.5rem; */
-    width: 100%;
-    /* background-color: gray; */
-    margin: 2rem auto;
-    /* box-shadow: 0.5px 0.5px 5px gray; */
-}
-.footBox{
-    height: 2.3rem;
-    /* background-color: red; */
-    margin:0.3rem auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.circleBox{
-    height: 30px;
-    width: 30px;
-    border: 2px solid wheat;
-    border-radius: 50%;
-    margin: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.circleBox:hover{
-    border: 2px solid brown;
-    color: brown;
-}
-.iconSize{
-    font-size: 1.1rem;
-}
-.socialLink{
-    text-decoration: none;
+.subBtns{
+    background-color: rgb(74, 74, 180);
     color: wheat;
 }
-.designedTag{
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
+.subBtns:hover{
+    background-color: blue;
+}
+.cancleBtn{
+    background-color: rgb(218, 73, 73);
+    color: wheat;
+}
+.cancleBtn:hover{
+    background-color: rgb(231, 9, 9);
 }

@@ -1,3 +1,4 @@
+const { number } = require('joi');
 const {model}=require ('mongoose');
 const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
@@ -22,6 +23,10 @@ const userSchema=new Schema({
     },
     profileImage:{
         type:String,
+        require:true
+    },
+    rank:{
+        type:Number,
         require:true
     },
     solvedQues:{

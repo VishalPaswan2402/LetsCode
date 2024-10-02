@@ -1,3 +1,8 @@
+.alertTxt{
+    align-items: center;
+    text-align: center;
+    font-size: 1.2rem;
+}
 .show{
     background-color: rgba(81, 81, 79, 0.283);
     color: wheat;
@@ -40,3 +45,67 @@
         width: 0%;
     }
 }
+
+/* Change the scrollbar width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Change the background of the scrollbar */
+::-webkit-scrollbar-track {
+    background: #5d5c5c64;
+}
+
+/* Change the scrollbar handle */
+::-webkit-scrollbar-thumb {
+    background-color: #64636348;
+    border-radius: 10px;
+    border: 2px solid #8b8b8b5b;
+}
+
+/* Change the scrollbar handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #b9aeae7b;
+}
+
+/* footer */
+#footer{
+    height: 5.5rem;
+    width: 100%;
+    margin: 1rem auto;
+}
+.footBox{
+    height: 2.3rem;
+    margin:0.1rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.circleBox{
+    height: 30px;
+    width: 30px;
+    border: 2px solid wheat;
+    border-radius: 50%;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.circleBox:hover{
+    border: 2px solid brown;
+    color: brown;
+}
+.iconSize{
+    font-size: 1.1rem;
+}
+.socialLink{
+    text-decoration: none;
+    color: wheat;
+}
+.designedTag{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+/* footer */

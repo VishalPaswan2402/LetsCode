@@ -25,7 +25,6 @@ body{
 #logo{
     height: 70%;
     width: 2.7rem;
-    /* background-color: red; */
     background-image: url(logo2.png);
     background-repeat: no-repeat;
     background-size: contain;
@@ -38,9 +37,8 @@ body{
     padding-right: 2rem;
 }
 #mode{
-    height: 2.5rem;
-    width: 2.5rem;
-    /* background-color: rgb(151, 151, 151); */
+    height: 2.3rem;
+    width: 2.3rem;
     margin-right: 1.5rem;
     border-radius: 20px;
     color: wheat;
@@ -49,23 +47,20 @@ body{
     align-items: center;
     text-align: center;
     justify-content: space-evenly;
+    cursor: pointer;
 }
 .modeIcon{
-    font-size: 1.4rem;
+    font-size: 1.1rem;
 }
 #homeContent{
-    /* height: 550px; */
     width: 100%;
-    /* background-color: rgb(71, 105, 93); */
     display: flex;
     flex-wrap: wrap;
-    /* align-items: center; */
     justify-content: space-evenly;
 }
 .homeContentPart{
     height: 420px;
-    width: 700px;
-    /* background-color: rgb(68, 79, 75); */
+    width: 40rem;
     border: 2px solid wheat;
     border-radius: 15px;
     margin: 3rem;
@@ -75,16 +70,13 @@ body{
 }
 .logTitle{
     width: 100%;
-    /* background-color: rebeccapurple; */
     text-align: center;
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
     padding-top: 8px;
 }
 .formData{
-    height: 89%;
     width: 100%;
-    /* background-color: blueviolet; */
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
 }
@@ -128,50 +120,9 @@ body{
     background-color: gray;
     margin: 4rem auto;
 }
-#footer{
-    /* height: 5.5rem; */
-    width: 100%;
-    /* background-color: gray; */
-    /* box-shadow: 0.5px 0.5px 5px gray; */
-}
-.footBox{
-    height: 2.3rem;
-    /* background-color: red; */
-    margin:0.3rem auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.circleBox{
-    height: 30px;
-    width: 30px;
-    border: 2px solid wheat;
-    border-radius: 50%;
-    margin: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.circleBox:hover{
-    border: 2px solid brown;
-    color: brown;
-}
-.iconSize{
-    font-size: 1.1rem;
-}
-.socialLink{
-    text-decoration: none;
-    color: wheat;
-}
-.designedTag{
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-}
-
 /* // for otp */
 .otpCard{
+    width: 23rem;
     align-items: center;
     text-align: center;
     background-color: rgba(128, 128, 128, 0.276);
@@ -192,15 +143,13 @@ body{
 .otp-container {
     display: flex;
     justify-content: center;
-    /* margin-top: 50px; */
 }
 .timerCount{
     width: 97%;
-    /* background-color: red; */
     margin: 15px auto;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 .resentOtp{
     color: wheat;
@@ -211,4 +160,13 @@ body{
 .forgetData{
     width: 300px;
     margin: 15px auto;
+}
+.otpVerify{
+    width: 12rem;
+    align-items: center;
+}
+.otpCnf{
+    width: 15rem;
+    margin-top: 15px;
+    align-items: center;
 }

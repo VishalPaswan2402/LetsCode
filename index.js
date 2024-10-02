@@ -166,14 +166,17 @@ app.get('/LetsCode/resendOtp',wrapAsync(async(req,res,next)=>{
 app.post('/LetsCode/verifyEmail',wrapAsync(async(req,res,next)=>{
     let {otp1,otp2,otp3,otp4,otp5,otp6}=req.body;
     let eOtp=otp1+otp2+otp3+otp4+otp5+otp6;
-    console.log(eOtp);
     let newUserData = req.session.newUserData;
     let findForgetData = req.session.findForgetData;
     if (newUserData) {
         const dp=Math.floor(Math.random()*10);
         let allDps=await allProfile.find();
         if(newUserData.otp==eOtp){
-            let newUser= new allUser({username:newUserData.username,name:newUserData.names,email:newUserData.email,password:newUserData.password1,profileImage:allDps[dp].profileLink});
+            let hrd=await allQuestion.find({level:"hard"});
+            let mdm=await allQuestion.find({level:"medium"});
+            let esy=await allQuestion.find({level:"easy"});
+            let rank=(hrd.length*12)+(mdm.length*8)+(esy.length*4)+1;
+            let newUser= new allUser({username:newUserData.username,name:newUserData.names,email:newUserData.email,password:newUserData.password1,profileImage:allDps[dp].profileLink,rank:rank});
             newUser.save();
             let currUserName=newUserData.username;
             delete req.session.newUserData;
@@ -191,12 +194,8 @@ app.post('/LetsCode/verifyEmail',wrapAsync(async(req,res,next)=>{
         let uId=findForgetData.findDataId;
         let forOtp=findForgetData.otp;
         if(forOtp==eOtp){
-            let forgetUser=await allUser.findById(uId);
-            console.log(forgetUser);
-            let uName=forgetUser.username;
-            let email=forgetUser.email;
             req.flash("success","Please enter your new password.");
-            return res.render("changePassword.ejs",{uName,email});
+            return res.redirect(`/LetsCode/Forget/Password/${uId}/NewPassword`);
         }
         else{
             req.flash("error","Incorrect OTP, please try again!");
@@ -260,6 +259,8 @@ app.put('/LetsCode/:id/:qId/solved/:solvedType',wrapAsync(async(req,res,next)=>{
     if(qLevel==="easy"){
         let solved=findData.easySol+1;
         let allEasy=await allUser.findById(id);
+        let currRank=allEasy.rank;
+        currRank-=4;
         let easyQ=allEasy.easyId.length;
         if(easyQ>0){
             for (let element of allEasy.easyId) {
@@ -271,7 +272,7 @@ app.put('/LetsCode/:id/:qId/solved/:solvedType',wrapAsync(async(req,res,next)=>{
             }
         }
         if(!occur){
-            let updateData=await allUser.findByIdAndUpdate(id,{solvedQues:solvedTotal,easySol:solved,$push: { easyId: qId }});
+            let updateData=await allUser.findByIdAndUpdate(id,{solvedQues:solvedTotal,easySol:solved,$push: { easyId: qId },rank:currRank});
             updateData.save();
             if(solvedType==="topicSolved"){
                 req.flash("success","Great! You have solved one more question.");
@@ -282,6 +283,8 @@ app.put('/LetsCode/:id/:qId/solved/:solvedType',wrapAsync(async(req,res,next)=>{
     }else if(qLevel==="medium"){
         let solved=findData.mediumSol+1;
         let allMed=await allUser.findById(id);
+        let currRank=allMed.rank;
+        currRank-=8;
         let medQ=allMed.mediumId.length;
         if(medQ>0){
             for (let element of allMed.mediumId) {
@@ -293,7 +296,7 @@ app.put('/LetsCode/:id/:qId/solved/:solvedType',wrapAsync(async(req,res,next)=>{
             }
         }
         if(!occur){
-            let updateData=await allUser.findByIdAndUpdate(id,{solvedQues:solvedTotal,mediumSol:solved,$push: { mediumId: qId }});
+            let updateData=await allUser.findByIdAndUpdate(id,{solvedQues:solvedTotal,mediumSol:solved,$push: { mediumId: qId },rank:currRank});
             updateData.save();
             if(solvedType==="topicSolved"){
                 req.flash("success","Great! You have solved one more question.");
@@ -304,6 +307,8 @@ app.put('/LetsCode/:id/:qId/solved/:solvedType',wrapAsync(async(req,res,next)=>{
     }else{
         let solved=findData.hardSol+1;
         let allHard=await allUser.findById(id);
+        let currRank=allHard.rank;
+        currRank-=12;
         let hardQ=allHard.hardId.length;
         if(hardQ>0){
             for (let element of allHard.hardId) {
@@ -315,7 +320,7 @@ app.put('/LetsCode/:id/:qId/solved/:solvedType',wrapAsync(async(req,res,next)=>{
             }
         }
         if(!occur){
-            let updateData=await allUser.findByIdAndUpdate(id,{solvedQues:solvedTotal,hardSol:solved,$push: { hardId: qId }});
+            let updateData=await allUser.findByIdAndUpdate(id,{solvedQues:solvedTotal,hardSol:solved,$push: { hardId: qId },rank:currRank});
             updateData.save();
             if(solvedType==="topicSolved"){
                 req.flash("success","Great! You have solved one more question.");
@@ -366,7 +371,6 @@ app.get('/LetsCode/Forget/Password',wrapAsync(async(req,res,next)=>{
 //get user data from forgetpage
 app.post('/LetsCode/Forget/Password/Verify',wrapAsync(async(req,res,next)=>{
     let {username,email}=req.body;
-    console.log(username,email);
     let findData=await allUser.findOne({username:username,email:email});
     if(findData){
         console.log("data find");
@@ -385,6 +389,15 @@ app.post('/LetsCode/Forget/Password/Verify',wrapAsync(async(req,res,next)=>{
         return res.redirect('/');
     }
 }));
+
+// change password Page...
+app.get("/LetsCode/Forget/Password/:id/NewPassword",wrapAsync(async(req,res,next)=>{
+    let {id}=req.params;
+    let forgetUser=await allUser.findById(id);
+    let uName=forgetUser.username;
+    let email=forgetUser.email;
+    return res.render("changePassword.ejs",{uName,email});
+}))
 
 // change password...
 app.put('/LetsCode/Forget/Password/Change',wrapAsync(async(req,res,next)=>{
@@ -414,6 +427,10 @@ app.put('/LetsCode/Change/Profile/:id',wrapAsync(async(req,res,next)=>{
     let profType=profNumber.charAt(0);
     let profNum=parseInt(profNumber.charAt(1));
     let userData=await allUser.findById(id);
+    if(profNumber===''){
+        req.flash("error","Unable to update the profile image.");
+        return res.redirect(`/LetsCode/user/${userData.username}`);
+    }
     if(profType==='b'){
         let profUp='boy'+profNum;
         let boysDp=await allProfile.findOne({dpType:profUp});
@@ -428,15 +445,11 @@ app.put('/LetsCode/Change/Profile/:id',wrapAsync(async(req,res,next)=>{
         let updateProf=await allUser.findByIdAndUpdate(id,{profileImage:applyLink});
         updateProf.save();
     }
+    req.flash("success","Profile image updated successfully.")
     return res.redirect(`/LetsCode/user/${userData.username}`);
 }));
 
-
-
-
-
-
-
+// Error handle for invalid router...
 app.all("*",(req,res,next)=>{
     next(new expressError(404,"Page Not Found !"));
 });
