@@ -1,4 +1,3 @@
-console.log("run");
 document.addEventListener('DOMContentLoaded', function() {
     const markDoneButtons = document.querySelectorAll('.markDone');
     const blockPg=document.getElementById('blockPg');

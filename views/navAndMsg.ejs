@@ -1,0 +1,19 @@
+<div id="navbarDiv">
+    <div id="webName">
+        <div id="logo"></div>
+        <a href="#" class="active navLink">LetsCode</a>
+    </div>
+    <div id="mode"><i class="fa-solid fa-right-from-bracket modeIcon"></i></div>
+</div>
+
+<%if(error && error.length){%>
+    <div class="alert alert-danger alert-dismissible fade show alertTxt" id="flashId" role="alert">
+        <%= error %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<%}else if(success && success.length){%>  
+    <div class="alert alert-success alert-dismissible fade show alertTxt" id="flashId" role="alert">
+         <%=success%>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<%}%>
