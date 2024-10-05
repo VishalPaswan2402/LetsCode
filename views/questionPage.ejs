@@ -8,6 +8,7 @@
 
     <%-include('./navAndMsg.ejs') %>
 
+    <%if(currUsers && currUsers._id.equals(userData._id)){%>
     <!-- Question list -->
     <% if (ques.length > 0) { %>
         <h2 style="text-align: center;padding: 10px; color: rgb(183, 180, 180);"><%=ques[0].topic%></h2>
@@ -50,6 +51,7 @@
                         <i class="fa-solid fa-code doneOpt"></i>
                     </div>
 
+                    <%if(currUsers && currUsers._id.equals(userData._id)){%>
                     <!-- mark as done option -->
                     <div id="markAsDone-<%= que.id %>" class="markAsDone">
                         <form method="post" action="/LetsCode/<%=id%>/<%=que._id%>/solved/topicSolved?_method=PUT" id="form<%= que._id %>">
@@ -61,14 +63,15 @@
                         </div>
                     </div>
                     <!-- mark as done option -->
+                    <%}%>
                 </div>
-                
             <% }); %>
         </div>
     <% } else { %>
         <div id="emptyState"><h2 style="text-align: center;padding: 1rem;">No questions available !</h2></div>
     <% } %>
     <!-- Question list -->
+    <%}%>
 
     <%-include('./footer.ejs')%>
 

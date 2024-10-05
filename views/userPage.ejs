@@ -9,6 +9,7 @@
     <%-include('./navAndMsg.ejs') %>
 
   <!-- Profile change option -->
+   <%if(currUsers && currUsers._id.equals(userData._id)){%>
   <div id="profileChange">
     <div class="topDp">Change Your Profile <i class="fa-solid fa-xmark closeProfBtn"></i></div>
     <div id="bottomDp">
@@ -37,6 +38,7 @@
         </form>
     </div>
   </div>
+  <%}%>
   <!-- Profile change option -->
 
     <div id="dataContainer">
@@ -44,8 +46,9 @@
         <div id="topUserData">
             <div id="userCard" class="userBox">
                 <div id="profChangeBtn" class="profImg" style="background-image: url(<%=userData.profileImage%>);">
-                    <i class="fa-solid fa-camera cameraIcon"></i>
+                    <%if(currUsers && currUsers._id.equals(userData._id)){%><i class="fa-solid fa-camera cameraIcon" id="cameraChange"></i><%}%>
                 </div>
+                
                 <div class="userName">
                     <h6><%=userData.name%></h6>
                     <h6><%=userData.username%></h6>
@@ -94,37 +97,39 @@
         <!-- user question solved data -->
 
         <!-- question tags data -->
-        <div id="queTags">
-            <a href="/LetsCode/<%=userData._id%>/topic/Array" target="_blank" class="queStyle">Array</a>
-            <a href="/LetsCode/<%=userData._id%>/topic/2D%20Array" target="_blank" class="queStyle">2D Arrays</a>
-            <a href="/LetsCode/<%=userData._id%>/topic/Strings" target="_blank" class="queStyle">Strings</a>
-            <a href="/LetsCode/<%=userData._id%>/topic/Searching%20&%20Sorting" target="_blank" class="queStyle">Searching & Sorting</a>
-            <a href="/LetsCode/<%=userData._id%>/topic/Backtracking" target="_blank" class="queStyle">Backtracking</a>
-            <a href="/LetsCode/<%=userData._id%>/topic/Linked%20List" target="_blank" class="queStyle">Linked List</a>
-            <a href="/LetsCode/<%=userData._id%>/topic/Stacks%20&%20Queues" target="_blank" class="queStyle">Stacks & Queues</a>
-            <a href="/LetsCode/<%=userData._id%>/topic/Greedy" target="_blank" class="queStyle">Greedy</a>
-            <a href="/LetsCode/<%=userData._id%>/topic/Binary%20Trees" target="_blank" class="queStyle">Binary Trees</a>
-            <a href="/LetsCode/<%=userData._id%>/topic/Binary%20Search%20Trees" target="_blank" class="queStyle">Binary Search Trees</a>
-            <a href="/LetsCode/<%=userData._id%>/topic/Heaps%20&%20Hashing" target="_blank" class="queStyle">Heaps & Hashing</a>
-            <a href="/LetsCode/<%=userData._id%>/topic/Graphs" target="_blank" class="queStyle">Graphs</a>
-            <a href="/LetsCode/<%=userData._id%>/topic/Tries" target="_blank" class="queStyle">Tries</a>
-            <a href="/LetsCode/<%=userData._id%>/topic/Bit%20Manipulation" target="_blank" class="queStyle">Bit Manipulation</a>
-            <a href="/LetsCode/<%=userData._id%>/topic/Segment%20Trees" target="_blank" class="queStyle">Segment Trees</a>
-            <a href="/LetsCode/<%=userData._id%>/topic/DP" target="_blank" class="queStyle">DP</a>
-        </div>
-
-        <div id="randomQueBox">
-            <h6>Hey coder, pick any question to solve...</h6>
-            <form id="selectRandomForm" method="post" action="/LetsCode/randomQue/Pick/<%=userData._id%>?_method=PUT">
-                <select name="qLevel" id="queLevel" class="randomQue">
-                    <option selected value="random">Select Que. Level</option>
-                    <option value="easy">Easy</option>
-                    <option value="medium">Medium</option>
-                    <option value="hard">Hard</option>
-                </select>
-                <button type="submit" class="searchRandomBtn"><i class="fa-solid fa-shuffle fa-flip randomLog"></i> Pick Question</button>
-            </form>
-        </div>
+        <%if(currUsers && currUsers._id.equals(userData._id)){%>
+            <div id="queTags">
+                <a href="/LetsCode/<%=userData._id%>/topic/Array" target="_blank" class="queStyle">Array</a>
+                <a href="/LetsCode/<%=userData._id%>/topic/2D%20Array" target="_blank" class="queStyle">2D Arrays</a>
+                <a href="/LetsCode/<%=userData._id%>/topic/Strings" target="_blank" class="queStyle">Strings</a>
+                <a href="/LetsCode/<%=userData._id%>/topic/Searching%20&%20Sorting" target="_blank" class="queStyle">Searching & Sorting</a>
+                <a href="/LetsCode/<%=userData._id%>/topic/Backtracking" target="_blank" class="queStyle">Backtracking</a>
+                <a href="/LetsCode/<%=userData._id%>/topic/Linked%20List" target="_blank" class="queStyle">Linked List</a>
+                <a href="/LetsCode/<%=userData._id%>/topic/Stacks%20&%20Queues" target="_blank" class="queStyle">Stacks & Queues</a>
+                <a href="/LetsCode/<%=userData._id%>/topic/Greedy" target="_blank" class="queStyle">Greedy</a>
+                <a href="/LetsCode/<%=userData._id%>/topic/Binary%20Trees" target="_blank" class="queStyle">Binary Trees</a>
+                <a href="/LetsCode/<%=userData._id%>/topic/Binary%20Search%20Trees" target="_blank" class="queStyle">Binary Search Trees</a>
+                <a href="/LetsCode/<%=userData._id%>/topic/Heaps%20&%20Hashing" target="_blank" class="queStyle">Heaps & Hashing</a>
+                <a href="/LetsCode/<%=userData._id%>/topic/Graphs" target="_blank" class="queStyle">Graphs</a>
+                <a href="/LetsCode/<%=userData._id%>/topic/Tries" target="_blank" class="queStyle">Tries</a>
+                <a href="/LetsCode/<%=userData._id%>/topic/Bit%20Manipulation" target="_blank" class="queStyle">Bit Manipulation</a>
+                <a href="/LetsCode/<%=userData._id%>/topic/Segment%20Trees" target="_blank" class="queStyle">Segment Trees</a>
+                <a href="/LetsCode/<%=userData._id%>/topic/DP" target="_blank" class="queStyle">DP</a>
+            </div>
+        
+            <div id="randomQueBox">
+                <h6>Hey coder, pick any question to solve...</h6>
+                <form id="selectRandomForm" method="post" action="/LetsCode/randomQue/Pick/<%=userData._id%>?_method=PUT">
+                    <select name="qLevel" id="queLevel" class="randomQue">
+                        <option selected value="random">Select Que. Level</option>
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                    <button type="submit" class="searchRandomBtn"><i class="fa-solid fa-shuffle fa-flip randomLog"></i> Pick Question</button>
+                </form>
+            </div>
+        <%}%>
         <!-- question tags data -->
     </div>
 

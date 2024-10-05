@@ -18,9 +18,13 @@ const mongoose = require('mongoose');
 const allUser=require('./models/user');
 const allQuestion=require('./models/allQuestion');
 const allProfile=require('./models/allProfile');
+const {isLoggedIn, isOwner}=require("./middlewares/authenticateUser");
 // const allQuestionList=require('./middlewares/saveQuestions');
 // const allProfileDp=require('./middlewares/saveProfileDp');
 
+
+const passport=require("passport");
+const LocalStrategy=require("passport-local");
 const session=require("express-session");
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
@@ -38,6 +42,12 @@ const sessionOption={
 
 app.use(session(sessionOption));
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(allUser.authenticate()));
+passport.serializeUser(allUser.serializeUser());
+passport.deserializeUser(allUser.deserializeUser());
+
 mongoose.connect('mongodb://127.0.0.1:27017/LetsCode')
   .then(() => console.log('Connected! to mongoose'));
 
@@ -47,7 +57,7 @@ app.use(flash());
 app.use((req,res,next)=>{
     res.locals.success=req.flash("success");
     res.locals.error=req.flash("error");
-    // res.locals.currUsers=req.user;
+    res.locals.currUsers=req.user;
     next();
 });
 
@@ -176,13 +186,18 @@ app.post('/LetsCode/verifyEmail',wrapAsync(async(req,res,next)=>{
             let mdm=await allQuestion.find({level:"medium"});
             let esy=await allQuestion.find({level:"easy"});
             let rank=(hrd.length*12)+(mdm.length*8)+(esy.length*4)+1;
-            let newUser= new allUser({username:newUserData.username,name:newUserData.names,email:newUserData.email,password:newUserData.password1,profileImage:allDps[dp].profileLink,rank:rank});
-            newUser.save();
-            let currUserName=newUserData.username;
-            delete req.session.newUserData;
-            req.flash("success","OTP verified & account created successfully.");
-            return res.redirect(`/LetsCode/user/${currUserName}`);
-            
+            let password=newUserData.password1;
+            let newUser=new allUser({username:newUserData.username,name:newUserData.names,email:newUserData.email,profileImage:allDps[dp].profileLink,rank:rank});
+            let registeredUser=await allUser.register(newUser,password);
+            req.login(registeredUser,(err)=>{
+                if(err){
+                    return next(err);
+                }
+                let currUserName=registeredUser.username;
+                delete req.session.newUserData;
+                req.flash("success","OTP verified & account created successfully.");
+                return res.redirect(`/LetsCode/user/${currUserName}`);
+            })
         }
         else{
             req.flash("error","Incorrect OTP, please try again!");
@@ -210,15 +225,11 @@ app.post('/LetsCode/verifyEmail',wrapAsync(async(req,res,next)=>{
 
 
 // login...
-app.post('/LetsCode/login',wrapAsync(async(req,res,next)=>{
-    let{username,password}=req.body;
-    let currentUser=await allUser.findOne({username:username,password:password});
-    if(!currentUser){
-        req.flash("error","User does not exist.");
-        return res.redirect('/');
-    }
+app.post('/LetsCode/login',passport.authenticate("local",{failureRedirect:'/',failureFlash:true}),wrapAsync(async(req,res,next)=>{
+    let currentUser=req.user;
+    let username=currentUser.username;
     req.flash("success","You are logged in successfully.");
-    return res.redirect(`/LetsCode/user/${currentUser.username}`);
+    return res.redirect(`/LetsCode/user/${username}`);
 }));
 
 
@@ -241,15 +252,15 @@ app.get('/LetsCode/user/:username',wrapAsync(async(req,res,next)=>{
 }));
 
 // show question...
-app.get('/LetsCode/:id/topic/:Qtype',wrapAsync(async(req,res,next)=>{
+app.get('/LetsCode/:id/topic/:Qtype',isLoggedIn,isOwner,wrapAsync(async(req,res,next)=>{
     let {Qtype,id}=req.params;
     let ques=await allQuestion.find({topic:Qtype});
     let userData=await allUser.findById(id);
     return res.render('questionPage.ejs',{ques,id,userData})
 }));
 
-// marked sas done...
-app.put('/LetsCode/:id/:qId/solved/:solvedType',wrapAsync(async(req,res,next)=>{
+// marked as done...
+app.put('/LetsCode/:id/:qId/solved/:solvedType',isLoggedIn,isOwner,wrapAsync(async(req,res,next)=>{
     let {id,qId,solvedType}=req.params;
     let findData=await allUser.findById(id);
     let findQue=await allQuestion.findById(qId);
@@ -337,7 +348,7 @@ app.put('/LetsCode/:id/:qId/solved/:solvedType',wrapAsync(async(req,res,next)=>{
 }));
 
 //random question...
-app.put('/LetsCode/randomQue/Pick/:id',wrapAsync(async(req,res,next)=>{
+app.put('/LetsCode/randomQue/Pick/:id',isLoggedIn,isOwner,wrapAsync(async(req,res,next)=>{
     let {id}=req.params;
     let{qLevel}=req.body;
     let randomQuestionId;
@@ -356,7 +367,7 @@ app.put('/LetsCode/randomQue/Pick/:id',wrapAsync(async(req,res,next)=>{
 }));
 
 // random Question page render...
-app.get('/LetsCode/randomQue/:qId/Picked/user/:id/',wrapAsync(async(req,res,next)=>{
+app.get('/LetsCode/randomQue/:qId/Picked/user/:id/',isLoggedIn,isOwner,wrapAsync(async(req,res,next)=>{
     let{qId,id}=req.params;
     let userData=await allUser.findById(id);
     let randomQuestion=await allQuestion.findById(qId);
@@ -420,8 +431,8 @@ app.put('/LetsCode/Forget/Password/Change',wrapAsync(async(req,res,next)=>{
     }
 }));
 
-// change profile...
-app.put('/LetsCode/Change/Profile/:id',wrapAsync(async(req,res,next)=>{
+// change profile image...
+app.put('/LetsCode/Change/Profile/:id',isLoggedIn,isOwner,wrapAsync(async(req,res,next)=>{
     let {id}=req.params;
     let {profNumber}=req.body;
     let profType=profNumber.charAt(0);
@@ -448,6 +459,17 @@ app.put('/LetsCode/Change/Profile/:id',wrapAsync(async(req,res,next)=>{
     req.flash("success","Profile image updated successfully.")
     return res.redirect(`/LetsCode/user/${userData.username}`);
 }));
+
+// Logout user...
+app.get("/LetsCode/LogOut",wrapAsync(async(req,res,next)=>{
+    req.logout((err)=>{
+        if(err){
+            next(err);
+        }
+        req.flash("success","You are logged-out successfully.");
+        return res.redirect('/');
+    })
+}))
 
 // Error handle for invalid router...
 app.all("*",(req,res,next)=>{

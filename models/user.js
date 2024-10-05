@@ -1,7 +1,8 @@
-const { number } = require('joi');
+const { number, required } = require('joi');
 const {model}=require ('mongoose');
 const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
+const passportLocalMongoose=require("passport-local-mongoose");
 const userSchema=new Schema({
     username:{
         type:String,
@@ -17,10 +18,10 @@ const userSchema=new Schema({
         unique:true,
         required:true
     },
-    password:{
-        type:String,
-        required:true
-    },
+    // password:{
+    //     type:String,
+    //     required:true
+    // },
     profileImage:{
         type:String,
         require:true
@@ -59,5 +60,6 @@ const userSchema=new Schema({
     }
 });
 
+userSchema.plugin(passportLocalMongoose);
 const allUser=mongoose.model("allUser",userSchema);
 module.exports=allUser;

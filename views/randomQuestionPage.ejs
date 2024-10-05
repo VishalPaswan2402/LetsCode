@@ -8,6 +8,7 @@
 
     <%-include('./navAndMsg.ejs') %>
 
+    <%if(currUsers && currUsers._id.equals(userData._id)){%>
     <!-- Question list -->
         <h2 style="text-align: center;padding: 10px; color: rgb(183, 180, 180);"><%=randomQuestion.topic%></h2>
         <h5 class="coderTry">Load your logic, aim for clarity, and fire at this <%=randomQuestion.level%>-level challenge!</h5>
@@ -63,6 +64,7 @@
                 </div>
         </div>
     <!-- Question list -->
+    <%}%>
 
     <%-include('./footer.ejs')%>
 

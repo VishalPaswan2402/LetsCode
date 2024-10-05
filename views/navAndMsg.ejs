@@ -3,7 +3,11 @@
         <div id="logo"></div>
         <a href="#" class="active navLink">LetsCode</a>
     </div>
-    <div id="mode"><i class="fa-solid fa-right-from-bracket modeIcon"></i></div>
+    <% if(!currUsers){%>
+        <a href="/" style="text-decoration: none;"><div id="mode"><i class="fa-solid fa-right-to-bracket modeIcon"></i></div></a>
+    <%} else{%>
+        <a href="/LetsCode/LogOut" style="text-decoration: none;"><div id="mode"><i class="fa-solid fa-right-from-bracket modeIcon"></i></div></a>
+    <%}%>
 </div>
 
 <%if(error && error.length){%>

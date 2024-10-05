@@ -21,7 +21,7 @@ solvedCircles.forEach(circle=>{
 // show percntage...
 
 // for show hide profile option...
-let changeDpBtn=document.querySelector('#profChangeBtn');
+let changeDpBtn=document.querySelector('#cameraChange');
 let chandeDiv=document.querySelector('#profileChange');
 let closeDp=document.querySelector('.closeProfBtn');
 let overlay=document.querySelector('#overlay');
