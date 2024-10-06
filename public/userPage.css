@@ -98,7 +98,7 @@ body{
     align-items: center;
     justify-content: center;
     margin-left: 10px;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 .cameraIcon {
     height: 100%;
@@ -114,6 +114,7 @@ body{
     font-size: 24px;
     color: wheat;
     opacity: 0;
+    cursor: pointer;
     transition: opacity 0.3s ease-in-out;
 }
 .profImg:hover .cameraIcon{

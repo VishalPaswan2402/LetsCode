@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
             subBtn.addEventListener('click',()=>{
                 const forms=document.getElementById(`form${qid}`);
                 forms.submit();
+                formDiv.style.display='none';
+                blockPg.style.display='none';
             })
             const cancleBtn=document.getElementById(`cancle${qid}`);
             console.log(cancleBtn);
