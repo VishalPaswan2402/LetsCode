@@ -7,6 +7,9 @@
 body{
     background-color: rgb(36, 36, 36);
     color: wheat;
+    background-image: url('./background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 #navbarDiv{
     height: 3.5rem;

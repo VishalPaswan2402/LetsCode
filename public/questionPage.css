@@ -7,6 +7,9 @@
 body{
     background-color: rgb(36, 36, 36);
     color: wheat;
+    background-image: url('./quePage.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 #navbarDiv{
     height: 3.5rem;
@@ -79,13 +82,13 @@ body{
     color: wheat;
 }
 .easyQue{
-    background-color: rgba(144, 239, 131, 0.37);
+    background-color: rgba(57, 142, 46, 0.674);
 }
 .mediumQue{
-    background-color: rgba(126, 236, 192, 0.418);
+    background-color: rgba(69, 162, 127, 0.804);
 }
 .hardQue{
-    background-color: rgba(249, 152, 153, 0.404);
+    background-color: rgba(249, 152, 153, 0.644);
 }
 .queTag:hover{
     background-color: rgba(78, 77, 77, 0.61);

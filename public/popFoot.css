@@ -92,8 +92,8 @@
     justify-content: center;
 }
 .circleBox:hover{
-    border: 2px solid brown;
-    color: brown;
+    border: 2px solid rgb(15, 211, 168);
+    background-color: rgb(24, 91, 128);
 }
 .iconSize{
     font-size: 1.1rem;

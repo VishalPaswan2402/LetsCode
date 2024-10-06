@@ -384,7 +384,6 @@ app.post('/LetsCode/Forget/Password/Verify',wrapAsync(async(req,res,next)=>{
     let {username,email}=req.body;
     let findData=await allUser.findOne({username:username,email:email});
     if(findData){
-        console.log("data find");
         const otpGen = Math.floor(100000 + Math.random() * 900000);
         let findForgetData={
             findDataId:findData._id,
@@ -420,10 +419,10 @@ app.put('/LetsCode/Forget/Password/Change',wrapAsync(async(req,res,next)=>{
         delete req.session.findForgetData;
         let currUserData=await allUser.findById(id);
         let userName=currUserData.username;
-        let updateData=await allUser.findByIdAndUpdate(id,{password:passwordSet});
-        updateData.save();
-        req.flash('success',"Password changed successfully.");
-        return res.redirect(`/LetsCode/user/${userName}`);
+        let newPass=await currUserData.setPassword(passwordSet);
+        newPass.save();
+        req.flash('success',"Password changed successfully. Login with new password.");
+        return res.redirect('/');
     }
     else{
         req.flash("error", "Session expired. Please try again later.");

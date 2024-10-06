@@ -7,6 +7,9 @@
 body{
     background-color: rgb(36, 36, 36);
     color: wheat;
+    background-image: url('./background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 #overlay{
     height: 100%;
@@ -78,7 +81,7 @@ body{
 .userBox{
     height: 140px;
     width: 320px;
-    border: 2px solid rgb(135, 133, 131);
+    border: 2px solid rgba(145, 229, 216, 0.774);
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -206,14 +209,14 @@ body{
 .queSolBox{
     height: 140px;
     width: 450px;
-    border: 2px solid rgb(135, 133, 131);
+    border: 2px solid rgba(145, 229, 216, 0.774);
     border-radius: 10px;
     padding-top: 5px;
 }
 .barWidth{
     width: 85%;
     margin-right: 5px;
-    background-color: rgba(128, 128, 128, 0.299);
+    background-color: rgba(40, 39, 39, 0.646);
 }
 .medium{
     display: flex;
@@ -227,7 +230,7 @@ body{
     height: 7rem;
     width: 100%;
     margin: 1rem auto;
-    border: 2px solid rgb(135, 133, 131);
+    border: 2px solid rgba(145, 229, 216, 0.774);
     border-radius: 10px;
     display: flex;
     flex-wrap: wrap;
@@ -239,7 +242,7 @@ body{
     height: 6rem;
     width: 6rem;
     border-radius: 50%;
-    border: 5px solid rgba(135, 133, 131, 0.413);
+    border: 5px solid rgba(145, 229, 216, 0.219);
     display: flex;
     align-items: center;
     text-align: center;
@@ -268,12 +271,12 @@ body{
     font-size: 1.3rem;
     font-weight: 550;
     justify-content: space-evenly;
-    background-color: rgb(36, 36, 36);
+    background-color: rgb(0, 0, 0);
 }
 #queTags{
     width: 100%;
     margin: 1rem auto;
-    border: 2px solid rgb(135, 133, 131);
+    border: 2px solid rgba(145, 229, 216, 0.774);
     border-radius: 10px;
     padding: 10px;
     display: flex;
@@ -294,7 +297,7 @@ body{
 #randomQueBox{
     height: 5.4rem;
     width: 100%;
-    border: 2px solid rgb(135, 133, 131);
+    border: 2px solid rgba(145, 229, 216, 0.774);
     border-radius: 10px;
     text-align: center;
     padding: 10px;
@@ -305,7 +308,7 @@ body{
     justify-content: space-evenly;
 }
 .randomQue{
-    background-color: rgb(69, 68, 68);
+    background-color: rgba(32, 32, 32, 0.893);
     height: 2rem;
     border-radius: 5px;
     border: 2px solid rgb(141, 141, 141);
@@ -314,7 +317,7 @@ body{
 .searchRandomBtn{
     height: 2rem;
     width: 8.3rem;
-    background-color: rgb(69, 68, 68);
+    background-color: rgba(32, 32, 32, 0.893);
     border-radius: 5px;
     border: 2px solid rgb(141, 141, 141);
     color: rgb(215, 209, 209);
