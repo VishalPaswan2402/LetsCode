@@ -11,7 +11,7 @@ module.exports.isLoggedIn=async(req,res,next)=>{
 module.exports.isOwner=async(req,res,next)=>{
     let{id}=req.params;
     let nowUser=await allUser.findById(id);
-    if(!nowUser._id.equals(res.locals.currUsers._id)){
+    if(!nowUser._id.equals(req.session.userId)){
         req.flash("error","Please login to your account.");
         return res.redirect('/');
     }
