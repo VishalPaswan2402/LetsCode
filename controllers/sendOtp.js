@@ -4,13 +4,13 @@ const { otpSender } = require("../middlewares/otpSender");
 
 module.exports.sendOtp = async (req, res, next) => {
     let newUserData = req.session.newUserData;
-    console.log("Re.");
+    // console.log("Re.");
     let findForgetData = req.session.findForgetData;
     if (newUserData) {
         delete req.session.findForgetData;
         let otpGen = newUserData.otp;
         let email = newUserData.email;
-        console.log(otpGen);
+        // console.log(otpGen);
         if (newUserData.count > 2) {
             delete req.session.newUserData;
             req.flash("error", "You have exceeded the limit for sending OTPs. Please try again later.");
@@ -23,7 +23,7 @@ module.exports.sendOtp = async (req, res, next) => {
         delete req.session.newUserData;
         let otpGen = findForgetData.otp;
         let email = findForgetData.email;
-        console.log(otpGen);
+        // console.log(otpGen);
         if (findForgetData.count > 2) {
             delete req.session.findForgetData;
             req.flash("error", "You have exceeded the limit for sending OTPs. Please try again later.");

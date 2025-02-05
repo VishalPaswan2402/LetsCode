@@ -20,11 +20,11 @@ async function otpSender(to, subject, text, html) {
             text,
             html,
         });
-        console.log("Send Successfully...");
+        // console.log("Send Successfully...");
         return { success: true, info };
     }
     catch (err) {
-        console.log(err);
+        // console.log(err);
         return { success: false, error: err };
     }
 

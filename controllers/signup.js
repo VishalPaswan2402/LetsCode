@@ -17,7 +17,7 @@ module.exports.signup = async (req, res, next) => {
         return res.redirect('/');
     }
     const otpGen = Math.floor(100000 + Math.random() * 900000);
-    console.log(otpGen);
+    // console.log(otpGen);
     let newUserData = {
         username: username,
         names: name,
@@ -27,6 +27,6 @@ module.exports.signup = async (req, res, next) => {
         count: 0
     };
     req.session.newUserData = newUserData;
-    console.log("Here");
+    // console.log("Here");
     return res.redirect('/LetsCode/VerifyOtp');
 };

@@ -110,7 +110,7 @@ app.use('/LetsCode/Change/Profile', profileImage);
 app.get('/', async (req, res) => {
     let id = req.session.userId;
     if (id) {
-        console.log("FInd");
+        // console.log("FInd");
         let data = await allUser.findById(id);
         return res.redirect(`/LetsCode/user/${data.username}`);
     }
