@@ -1,4 +1,4 @@
-const allProfileDp=[
+const allProfileDp = [
     {
         "dpType": "boy1",
         "profileLink": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvPdoevsjMP8uVAZqsTfEPkiWJViA4EnfTRg&s"
@@ -41,4 +41,4 @@ const allProfileDp=[
     }
 ]
 
-module.exports=allProfileDp;
+module.exports = allProfileDp;

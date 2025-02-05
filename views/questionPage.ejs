@@ -1,82 +1,115 @@
 <%-include('./head.ejs') %>
-<title>LetsCode Question</title>
-<link rel="stylesheet" href="/questionPage.css">
-<link rel="stylesheet" href="/popFoot.css">
-<link rel="stylesheet" href="/responsiv.css">
-<body>
-    <div id="blockPg"></div>
+    <title>LetsCode Question</title>
+    <link rel="stylesheet" href="/questionPage.css">
+    <link rel="stylesheet" href="/popFoot.css">
+    <link rel="stylesheet" href="/responsiv.css">
 
-    <%-include('./navAndMsg.ejs') %>
+    <body>
+        <div id="blockPg"></div>
 
-    <%if(currUsers && currUsers._id.equals(userData._id)){%>
-    <!-- Question list -->
-    <% if (ques.length > 0) { %>
-        <h2 style="text-align: center;padding: 10px; color: rgb(183, 180, 180);"><%=ques[0].topic%></h2>
-        <div id="dataContainer">
-            <% ques.forEach((que, idx) => { %>
-                <div class="quesDone">
-                    <a href="<%= que.urlLink %>" class="queLink" target="_blank" aria-label="<%= que.questionName %>">
-                        <div class="queTag 
+        <%-include('./navAndMsg.ejs') %>
+
+            <%if(currUsers && currUsers._id.equals(userData._id)){%>
+                <!-- Question list -->
+                <% if (ques.length> 0) { %>
+                    <h2 style="text-align: center;padding: 10px; color: rgb(183, 180, 180);">
+                        <%=ques[0].topic%>
+                    </h2>
+                    <div id="dataContainer">
+                        <% ques.forEach((que, idx)=> { %>
+                            <div class="quesDone">
+                                <a href="<%= que.urlLink %>" class="queLink" target="_blank"
+                                    aria-label="<%= que.questionName %>">
+                                    <div class="queTag 
                             <%= que.level === 'easy' ? 'easyQue' : 
                                 que.level === 'medium' ? 'mediumQue' : 
                                 que.level === 'hard' ? 'hardQue' : '' 
                             %>">
-                            &nbsp;&nbsp;&nbsp; <%= (idx + 1).toString().padStart(2, '0') %>. &nbsp;&nbsp;&nbsp; <%= que.questionName %> &nbsp;&nbsp;&nbsp; 
-                            <% if (que.level === 'easy') { %>
-                                <% if(userData.easyId.length>0){%>
-                                    <% userData.easyId.forEach(function(id) { %>
-                                        <% if(id==que._id){%><i class="fa-solid fa-check"></i><%}%>
-                                    <% }); %>
-                                <%}%>
-                            <% } else if (que.level === 'medium') { %>
-                                <% if(userData.mediumId.length>0){%>
-                                    <% userData.mediumId.forEach(function(id) { %>
-                                        <% if(id==que._id){%><i class="fa-solid fa-check"></i><%}%>
-                                    <% }); %>
-                                <%}%>
-                            <% } else if (que.level === 'hard') { %>
-                                <% if(userData.hardId.length>0){%>
-                                    <% userData.hardId.forEach(function(id) { %>
-                                        <% if(id==que._id){%><i class="fa-solid fa-check"></i><%}%>
-                                    <% }); %>
-                                <%}%>
-                            <% } %>
-                        </div>
-                    </a>
-                    <div class="markDone 
+                                        &nbsp;&nbsp;&nbsp; <%= (idx + 1).toString().padStart(2, '0' ) %>.
+                                            &nbsp;&nbsp;&nbsp; <%= que.questionName %> &nbsp;&nbsp;&nbsp;
+                                                <% if (que.level==='easy' ) { %>
+                                                    <% if(userData.easyId.length>0){%>
+                                                        <% userData.easyId.forEach(function(id) { %>
+                                                            <% if(id==que._id){%><i class="fa-solid fa-check"></i>
+                                                                <%}%>
+                                                                    <% }); %>
+                                                                        <%}%>
+                                                                            <% } else if (que.level==='medium' ) { %>
+                                                                                <% if(userData.mediumId.length>0){%>
+                                                                                    <% userData.mediumId.forEach(function(id)
+                                                                                        { %>
+                                                                                        <% if(id==que._id){%><i
+                                                                                                class="fa-solid fa-check"></i>
+                                                                                            <%}%>
+                                                                                                <% }); %>
+                                                                                                    <%}%>
+                                                                                                        <% } else if
+                                                                                                            (que.level==='hard'
+                                                                                                            ) { %>
+                                                                                                            <%
+                                                                                                                if(userData.hardId.length>
+                                                                                                                0){%>
+                                                                                                                <% userData.hardId.forEach(function(id)
+                                                                                                                    { %>
+                                                                                                                    <%
+                                                                                                                        if(id==que._id){%>
+                                                                                                                        <i
+                                                                                                                            class="fa-solid fa-check"></i>
+                                                                                                                        <%}%>
+                                                                                                                            <% });
+                                                                                                                                %>
+                                                                                                                                <%}%>
+                                                                                                                                    <% }
+                                                                                                                                        %>
+                                    </div>
+                                </a>
+                                <div class="markDone 
                         <%= que.level === 'easy' ? 'easyQue' : 
                             que.level === 'medium' ? 'mediumQue' : 
                             que.level === 'hard' ? 'hardQue' : '' 
                         %>" data-index="<%= que._id %>">
-                        <i class="fa-solid fa-code doneOpt"></i>
-                    </div>
+                                    <i class="fa-solid fa-code doneOpt"></i>
+                                </div>
 
-                    <%if(currUsers && currUsers._id.equals(userData._id)){%>
-                    <!-- mark as done option -->
-                    <div id="markAsDone-<%= que.id %>" class="markAsDone">
-                        <form method="post" action="/LetsCode/<%=id%>/<%=que._id%>/solved/topicSolved?_method=PUT" id="form<%= que._id %>">
-                            <h5 style="color: rgb(237, 174, 232);" class="doneThis">Have you done this ?</h5>
-                        </form>
-                        <div>
-                            <button id="sub<%=que._id%>" type="submit" data-index="<%= que.idNo %>" class="doneBtn subBtns"><i class="fa-solid fa-check"></i> Mark As Done</button>
-                            <button id="cancle<%=que._id%>" class="doneBtn cancleBtn" data-index="<%= que._id %>"><i class="fa-solid fa-xmark"></i> Cancle</button>    
+                                <%if(currUsers && currUsers._id.equals(userData._id)){%>
+                                    <!-- mark as done option -->
+                                    <div id="markAsDone-<%= que.id %>" class="markAsDone">
+                                        <form method="post"
+                                            action="/LetsCode/<%=id%>/<%=que._id%>/solved/topicSolved?_method=PUT"
+                                            id="form<%= que._id %>">
+                                            <h5 style="color: rgb(237, 174, 232);" class="doneThis">Have you done this ?
+                                            </h5>
+                                        </form>
+                                        <div>
+                                            <button id="sub<%=que._id%>" type="submit" data-index="<%= que.idNo %>"
+                                                class="doneBtn subBtns"><i class="fa-solid fa-check"></i> Mark As
+                                                Done</button>
+                                            <button id="cancle<%=que._id%>" class="doneBtn cancleBtn"
+                                                data-index="<%= que._id %>"><i class="fa-solid fa-xmark"></i>
+                                                Cancle</button>
+                                        </div>
+                                    </div>
+                                    <!-- mark as done option -->
+                                    <%}%>
+                            </div>
+                            <% }); %>
+                    </div>
+                    <% } else { %>
+                        <div id="emptyState">
+                            <h2 style="text-align: center;padding: 1rem;">No questions available !</h2>
                         </div>
-                    </div>
-                    <!-- mark as done option -->
-                    <%}%>
-                </div>
-            <% }); %>
-        </div>
-    <% } else { %>
-        <div id="emptyState"><h2 style="text-align: center;padding: 1rem;">No questions available !</h2></div>
-    <% } %>
-    <!-- Question list -->
-    <%}%>
+                        <% } %>
+                            <!-- Question list -->
+                            <%}%>
 
-    <%-include('./footer.ejs')%>
+                                <%-include('./footer.ejs')%>
 
-    <script src="/inputValidate.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="/questionPage.js"></script>
-</body>
-</html>
+                                    <script src="/inputValidate.js"></script>
+                                    <script
+                                        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                                        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+                                        crossorigin="anonymous"></script>
+                                    <script src="/questionPage.js"></script>
+    </body>
+
+    </html>

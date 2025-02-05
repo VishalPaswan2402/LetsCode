@@ -4,20 +4,24 @@
         <a href="/" class="active navLink">LetsCode</a>
     </div>
     <% if(!currUsers){%>
-        <a href="/" style="text-decoration: none;"><div id="mode"><i class="fa-solid fa-right-to-bracket modeIcon"></i></div></a>
-    <%} else{%>
-        <a href="/LetsCode/LogOut" style="text-decoration: none;"><div id="mode"><i class="fa-solid fa-right-from-bracket modeIcon"></i></div></a>
-    <%}%>
+        <a href="/" style="text-decoration: none;">
+            <div id="mode"><i class="fa-solid fa-right-to-bracket modeIcon"></i></div>
+        </a>
+        <%} else{%>
+            <a href="/LetsCode/LogOut" style="text-decoration: none;">
+                <div id="mode"><i class="fa-solid fa-right-from-bracket modeIcon"></i></div>
+            </a>
+            <%}%>
 </div>
 
 <%if(error && error.length){%>
     <div class="alert alert-danger alert-dismissible fade show alertTxt" id="flashId" role="alert">
         <%= error %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-<%}else if(success && success.length){%>  
-    <div class="alert alert-success alert-dismissible fade show alertTxt" id="flashId" role="alert">
-         <%=success%>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-<%}%>
+    <%}else if(success && success.length){%>
+        <div class="alert alert-success alert-dismissible fade show alertTxt" id="flashId" role="alert">
+            <%=success%>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <%}%>

@@ -1,142 +1,193 @@
 <%-include('./head.ejs') %>
-<title>LetsCode-User_Page</title>
-<link rel="stylesheet" href="/userPage.css">
-<link rel="stylesheet" href="/popFoot.css">
-<link rel="stylesheet" href="/responsiv.css">
-<body>
-    <div id="overlay"></div>
-    
-    <%-include('./navAndMsg.ejs') %>
+    <title>LetsCode-User_Page</title>
+    <link rel="stylesheet" href="/userPage.css">
+    <link rel="stylesheet" href="/popFoot.css">
+    <link rel="stylesheet" href="/responsiv.css">
 
-  <!-- Profile change option -->
-   <%if(currUsers && currUsers._id.equals(userData._id)){%>
-  <div id="profileChange">
-    <div class="topDp">Change Your Profile <i class="fa-solid fa-xmark closeProfBtn"></i></div>
-    <div id="bottomDp">
-        <div class="cornerDp">
-            <div id="b1" class="dp">01</div>
-            <div id="b2" class="dp">02</div>
-            <div id="b3" class="dp">03</div>
-            <div id="b4" class="dp">04</div>
-            <div id="b5" class="dp">05</div>
-        </div>
-        <div class="middleDp">
-            <div class="dpCircle"></div>
-        </div>
-        <div class="cornerDp">
-            <div id="g1" class="dp">01</div>
-            <div id="g2" class="dp">02</div>
-            <div id="g3" class="dp">03</div>
-            <div id="g4" class="dp">04</div>
-            <div id="g5" class="dp">05</div>
-        </div>
-    </div>
-    <div class="topDp">
-        <form method="post" action="/LetsCode/Change/Profile/<%=userData._id%>?_method=PUT">
-            <input type="text" name="profNumber" id="profileNo">
-            <button type="submit" class="changeProfNo">Update Profile</button>
-        </form>
-    </div>
-  </div>
-  <%}%>
-  <!-- Profile change option -->
+    <body>
+        <div id="overlay"></div>
 
-    <div id="dataContainer">
-        <!-- user profile data -->
-        <div id="topUserData">
-            <div id="userCard" class="userBox">
-                <div id="profChangeBtn" class="profImg" style="background-image: url(<%=userData.profileImage%>);">
-                    <%if(currUsers && currUsers._id.equals(userData._id)){%><i class="fa-solid fa-camera cameraIcon" id="cameraChange"></i><%}%>
-                </div>
-                
-                <div class="userName">
-                    <h6><%=userData.name%></h6>
-                    <h6><%=userData.username%></h6>
-                    <h6>Solved : <%=userData.solvedQues%>/<%=queLen%></h6>
-                    <h6>Rank : <%=userData.rank%></h6>
-                </div>
-            </div>
-            <div id="userCard2" class="queSolBox">
-                <div class="medium">Easy
-                    <div class="progress barWidth" role="progressbar" aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated widPer" style="background-color: rgb(56, 126, 56);"><%=easyPer%>%</div>
+        <%-include('./navAndMsg.ejs') %>
+
+            <!-- Profile change option -->
+            <%if(currUsers && currUsers._id.equals(userData._id)){%>
+                <div id="profileChange">
+                    <div class="topDp">Change Your Profile <i class="fa-solid fa-xmark closeProfBtn"></i></div>
+                    <div id="bottomDp">
+                        <div class="cornerDp">
+                            <div id="b1" class="dp">01</div>
+                            <div id="b2" class="dp">02</div>
+                            <div id="b3" class="dp">03</div>
+                            <div id="b4" class="dp">04</div>
+                            <div id="b5" class="dp">05</div>
+                        </div>
+                        <div class="middleDp">
+                            <div class="dpCircle"></div>
+                        </div>
+                        <div class="cornerDp">
+                            <div id="g1" class="dp">01</div>
+                            <div id="g2" class="dp">02</div>
+                            <div id="g3" class="dp">03</div>
+                            <div id="g4" class="dp">04</div>
+                            <div id="g5" class="dp">05</div>
+                        </div>
+                    </div>
+                    <div class="topDp">
+                        <form method="post" action="/LetsCode/Change/Profile/<%=userData._id%>?_method=PUT">
+                            <input type="text" name="profNumber" id="profileNo">
+                            <button type="submit" class="changeProfNo">Update Profile</button>
+                        </form>
                     </div>
                 </div>
+                <%}%>
+                    <!-- Profile change option -->
 
-                <div class="medium">Medium
-                    <div class="progress barWidth" role="progressbar" aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated widPer" style="background-color: rgb(71, 152, 166);"><%=mediumPer%>%</div>
+                    <div id="dataContainer">
+                        <!-- user profile data -->
+                        <div id="topUserData">
+                            <div id="userCard" class="userBox">
+                                <div id="profChangeBtn" class="profImg"
+                                    style="background-image: url(<%=userData.profileImage%>);">
+                                    <%if(currUsers && currUsers._id.equals(userData._id)){%><i
+                                            class="fa-solid fa-camera cameraIcon" id="cameraChange"></i>
+                                        <%}%>
+                                </div>
+
+                                <div class="userName">
+                                    <h6>
+                                        <%=userData.name%>
+                                    </h6>
+                                    <h6>
+                                        <%=userData.username%>
+                                    </h6>
+                                    <h6>Solved : <%=userData.solvedQues%>/<%=queLen%>
+                                    </h6>
+                                    <h6>Rank : <%=userData.rank%>
+                                    </h6>
+                                </div>
+                            </div>
+                            <div id="userCard2" class="queSolBox">
+                                <div class="medium">Easy
+                                    <div class="progress barWidth" role="progressbar"
+                                        aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0"
+                                        aria-valuemax="100">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated widPer"
+                                            style="background-color: rgb(56, 126, 56);">
+                                            <%=easyPer%>%
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="medium">Medium
+                                    <div class="progress barWidth" role="progressbar"
+                                        aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0"
+                                        aria-valuemax="100">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated widPer"
+                                            style="background-color: rgb(71, 152, 166);">
+                                            <%=mediumPer%>%
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="medium">Hard
+                                    <div class="progress barWidth" role="progressbar"
+                                        aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0"
+                                        aria-valuemax="100">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated widPer"
+                                            style="background-color: rgb(236, 85, 85);">
+                                            <%=hardPer%>%
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- user profile data -->
+
+                        <!-- user question solved data -->
+                        <div id="solvedQues">
+                            <div class="solvedCircle" id="easyHov">
+                                <div class="perData">
+                                    <%=userData.easySol%>/<%=eLen%>
+                                </div>
+                            </div>
+
+                            <div class="solvedCircle" id="medHov">
+                                <div class="perData">
+                                    <%=userData.mediumSol%>/<%=mLen%>
+                                </div>
+                            </div>
+
+                            <div class="solvedCircle" id="hardHov">
+                                <div class="perData">
+                                    <%=userData.hardSol%>/<%=hLen%>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- user question solved data -->
+
+                        <!-- question tags data -->
+                        <%if(currUsers && currUsers._id.equals(userData._id)){%>
+                            <div id="queTags">
+                                <a href="/LetsCode/<%=userData._id%>/topic/Array" target="_blank"
+                                    class="queStyle">Array</a>
+                                <a href="/LetsCode/<%=userData._id%>/topic/2D%20Array" target="_blank"
+                                    class="queStyle">2D Arrays</a>
+                                <a href="/LetsCode/<%=userData._id%>/topic/Strings" target="_blank"
+                                    class="queStyle">Strings</a>
+                                <a href="/LetsCode/<%=userData._id%>/topic/Searching%20&%20Sorting" target="_blank"
+                                    class="queStyle">Searching & Sorting</a>
+                                <a href="/LetsCode/<%=userData._id%>/topic/Backtracking" target="_blank"
+                                    class="queStyle">Backtracking</a>
+                                <a href="/LetsCode/<%=userData._id%>/topic/Linked%20List" target="_blank"
+                                    class="queStyle">Linked List</a>
+                                <a href="/LetsCode/<%=userData._id%>/topic/Stacks%20&%20Queues" target="_blank"
+                                    class="queStyle">Stacks & Queues</a>
+                                <a href="/LetsCode/<%=userData._id%>/topic/Greedy" target="_blank"
+                                    class="queStyle">Greedy</a>
+                                <a href="/LetsCode/<%=userData._id%>/topic/Binary%20Trees" target="_blank"
+                                    class="queStyle">Binary Trees</a>
+                                <a href="/LetsCode/<%=userData._id%>/topic/Binary%20Search%20Trees" target="_blank"
+                                    class="queStyle">Binary Search Trees</a>
+                                <a href="/LetsCode/<%=userData._id%>/topic/Heaps%20&%20Hashing" target="_blank"
+                                    class="queStyle">Heaps & Hashing</a>
+                                <a href="/LetsCode/<%=userData._id%>/topic/Graphs" target="_blank"
+                                    class="queStyle">Graphs</a>
+                                <a href="/LetsCode/<%=userData._id%>/topic/Tries" target="_blank"
+                                    class="queStyle">Tries</a>
+                                <a href="/LetsCode/<%=userData._id%>/topic/Bit%20Manipulation" target="_blank"
+                                    class="queStyle">Bit Manipulation</a>
+                                <a href="/LetsCode/<%=userData._id%>/topic/Segment%20Trees" target="_blank"
+                                    class="queStyle">Segment Trees</a>
+                                <a href="/LetsCode/<%=userData._id%>/topic/DP" target="_blank" class="queStyle">DP</a>
+                            </div>
+
+                            <div id="randomQueBox">
+                                <h6>Hey coder, pick any question to solve...</h6>
+                                <form id="selectRandomForm" method="post"
+                                    action="/LetsCode/randomQue/Pick/<%=userData._id%>?_method=PUT">
+                                    <select name="qLevel" id="queLevel" class="randomQue">
+                                        <option selected value="random">Select Que. Level</option>
+                                        <option value="easy">Easy</option>
+                                        <option value="medium">Medium</option>
+                                        <option value="hard">Hard</option>
+                                    </select>
+                                    <button type="submit" class="searchRandomBtn"><i
+                                            class="fa-solid fa-shuffle fa-flip randomLog"></i> Pick Question</button>
+                                </form>
+                            </div>
+                            <%}%>
+                                <!-- question tags data -->
                     </div>
-                </div>
 
-                <div class="medium">Hard
-                    <div class="progress barWidth" role="progressbar" aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated widPer" style="background-color: rgb(236, 85, 85);"><%=hardPer%>%</div>
-                    </div>
-                </div>
+                    <%-include('./footer.ejs')%>
 
-            </div>
-        </div>
-        <!-- user profile data -->
+                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+                            crossorigin="anonymous"></script>
+                        <script src="/userPage.js"></script>
+                        <script src="/inputValidate.js"></script>
+    </body>
 
-        <!-- user question solved data -->
-         <div id="solvedQues">
-            <div class="solvedCircle" id="easyHov">
-                <div class="perData"><%=userData.easySol%>/<%=eLen%></div>
-            </div>
-
-            <div class="solvedCircle" id="medHov">
-                <div class="perData"><%=userData.mediumSol%>/<%=mLen%></div>
-            </div>
-
-            <div class="solvedCircle" id="hardHov">
-                <div class="perData"><%=userData.hardSol%>/<%=hLen%></div>
-            </div>
-            
-         </div>
-        <!-- user question solved data -->
-
-        <!-- question tags data -->
-        <%if(currUsers && currUsers._id.equals(userData._id)){%>
-            <div id="queTags">
-                <a href="/LetsCode/<%=userData._id%>/topic/Array" target="_blank" class="queStyle">Array</a>
-                <a href="/LetsCode/<%=userData._id%>/topic/2D%20Array" target="_blank" class="queStyle">2D Arrays</a>
-                <a href="/LetsCode/<%=userData._id%>/topic/Strings" target="_blank" class="queStyle">Strings</a>
-                <a href="/LetsCode/<%=userData._id%>/topic/Searching%20&%20Sorting" target="_blank" class="queStyle">Searching & Sorting</a>
-                <a href="/LetsCode/<%=userData._id%>/topic/Backtracking" target="_blank" class="queStyle">Backtracking</a>
-                <a href="/LetsCode/<%=userData._id%>/topic/Linked%20List" target="_blank" class="queStyle">Linked List</a>
-                <a href="/LetsCode/<%=userData._id%>/topic/Stacks%20&%20Queues" target="_blank" class="queStyle">Stacks & Queues</a>
-                <a href="/LetsCode/<%=userData._id%>/topic/Greedy" target="_blank" class="queStyle">Greedy</a>
-                <a href="/LetsCode/<%=userData._id%>/topic/Binary%20Trees" target="_blank" class="queStyle">Binary Trees</a>
-                <a href="/LetsCode/<%=userData._id%>/topic/Binary%20Search%20Trees" target="_blank" class="queStyle">Binary Search Trees</a>
-                <a href="/LetsCode/<%=userData._id%>/topic/Heaps%20&%20Hashing" target="_blank" class="queStyle">Heaps & Hashing</a>
-                <a href="/LetsCode/<%=userData._id%>/topic/Graphs" target="_blank" class="queStyle">Graphs</a>
-                <a href="/LetsCode/<%=userData._id%>/topic/Tries" target="_blank" class="queStyle">Tries</a>
-                <a href="/LetsCode/<%=userData._id%>/topic/Bit%20Manipulation" target="_blank" class="queStyle">Bit Manipulation</a>
-                <a href="/LetsCode/<%=userData._id%>/topic/Segment%20Trees" target="_blank" class="queStyle">Segment Trees</a>
-                <a href="/LetsCode/<%=userData._id%>/topic/DP" target="_blank" class="queStyle">DP</a>
-            </div>
-        
-            <div id="randomQueBox">
-                <h6>Hey coder, pick any question to solve...</h6>
-                <form id="selectRandomForm" method="post" action="/LetsCode/randomQue/Pick/<%=userData._id%>?_method=PUT">
-                    <select name="qLevel" id="queLevel" class="randomQue">
-                        <option selected value="random">Select Que. Level</option>
-                        <option value="easy">Easy</option>
-                        <option value="medium">Medium</option>
-                        <option value="hard">Hard</option>
-                    </select>
-                    <button type="submit" class="searchRandomBtn"><i class="fa-solid fa-shuffle fa-flip randomLog"></i> Pick Question</button>
-                </form>
-            </div>
-        <%}%>
-        <!-- question tags data -->
-    </div>
-
-    <%-include('./footer.ejs')%>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="/userPage.js"></script>
-    <script src="/inputValidate.js"></script>
-</body>
-</html>
+    </html>

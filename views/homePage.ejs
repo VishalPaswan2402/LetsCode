@@ -1,50 +1,69 @@
 <%-include('./head.ejs') %>
-<title>Home Page</title>
-<link rel="stylesheet" href="/homePage.css">
-<link rel="stylesheet" href="/popFoot.css">
-<link rel="stylesheet" href="/responsiv.css">
-<body>
-    <%-include('./navAndMsg.ejs') %>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/homePage.css">
+    <link rel="stylesheet" href="/popFoot.css">
+    <link rel="stylesheet" href="/responsiv.css">
 
-    <div id="homeContent">
-        <div id="Login1Part" class="homeContentPart" style="height: 260px;">
-            <div class="logTitle"><h2>Login</h2></div>
-            <div class="formData">
-                <form action="/LetsCode/login" method="post" class="needs-validation" novalidate>
-                    <input name="username" type="text" class="inputData form-control" placeholder="Enter User Name" required>
-                    <input name="password" type="password" class="inputData form-control" placeholder="Enter Password" required>
-                    <button type="submit" class="inputData submitBtn">Login</button>
-                </form>
-                <div class="haveAccount">
-                    <p id="newAc">Create New account?</p>
-                    <a href="/LetsCode/Forget/Password" style="text-decoration: none; color: wheat;"><p>Forget Password</p></a>
+    <body>
+        <%-include('./navAndMsg.ejs') %>
+
+            <div id="homeContent">
+                <div id="Login1Part" class="homeContentPart" style="height: 260px;">
+                    <div class="logTitle">
+                        <h2>Login</h2>
+                    </div>
+                    <div class="formData">
+                        <form action="/LetsCode/login" method="post" class="needs-validation" novalidate>
+                            <input name="username" type="text" class="inputData form-control"
+                                placeholder="Enter User Name" required>
+                            <input name="password" type="password" class="inputData form-control"
+                                placeholder="Enter Password" required>
+                            <button type="submit" class="inputData submitBtn">Login</button>
+                        </form>
+                        <div class="haveAccount">
+                            <p id="newAc">Create New account?</p>
+                            <a href="/LetsCode/Forget/Password" style="text-decoration: none; color: wheat;">
+                                <p>Forget Password</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="loginPart" class="homeContentPart">
+                    <div class="logTitle">
+                        <h2>Create Account</h2>
+                    </div>
+                    <div class="formData">
+                        <form action="/LetsCode/Signup" method="post" class="needs-validation" novalidate>
+                            <input name="username" type="text" class="inputData form-control"
+                                placeholder="Enter User Name" required>
+                            <input name="name" type="text" class="inputData form-control" placeholder="Enter Name"
+                                required>
+                            <input name="email" type="email" class="inputData form-control" placeholder="Enter E-mail"
+                                required>
+                            <input name="password" type="password" class="inputData form-control"
+                                placeholder="Enter Password" required>
+                            <input name="password2" type="password" class="inputData form-control"
+                                placeholder="Re-enter Password" required>
+                            <button type="submit" class="inputData submitBtn">Sign Up</button>
+                        </form>
+                        <div class="haveAccount">
+                            <p id="haveAc">Already have an account?</p>
+                            <a href="/LetsCode/Forget/Password" style="text-decoration: none; color: wheat;">
+                                <p id="forgetPass">Forget Password</p>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div id="loginPart" class="homeContentPart">
-            <div class="logTitle"><h2>Create Account</h2></div>
-            <div class="formData">
-                <form action="/LetsCode/Signup" method="post" class="needs-validation" novalidate>
-                    <input name="username" type="text" class="inputData form-control" placeholder="Enter User Name" required>
-                    <input name="name" type="text" class="inputData form-control" placeholder="Enter Name" required>
-                    <input name="email" type="email" class="inputData form-control" placeholder="Enter E-mail" required>
-                    <input name="password" type="password" class="inputData form-control" placeholder="Enter Password" required>
-                    <input name="password2" type="password" class="inputData form-control" placeholder="Re-enter Password" required>
-                    <button type="submit" class="inputData submitBtn">Sign Up</button>
-                </form>
-                <div class="haveAccount">
-                    <p id="haveAc">Already have an account?</p>
-                    <a href="/LetsCode/Forget/Password" style="text-decoration: none; color: wheat;"><p id="forgetPass">Forget Password</p></a>
-                </div>
-            </div>
-        </div>
-    </div>
+            <%-include('./footer.ejs')%>
 
-    <%-include('./footer.ejs')%>
+                <script src="/inputValidate.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+                    crossorigin="anonymous"></script>
+                <script src="/script.js"></script>
+    </body>
 
-    <script src="/inputValidate.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="/script.js"></script>
-</body>
-</html>
+    </html>

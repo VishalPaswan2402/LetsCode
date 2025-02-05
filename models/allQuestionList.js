@@ -1,4 +1,4 @@
-const allQuestionList=[
+const allQuestionList = [
   // Arrays...
   {
     "questionName": "Maximum Subarray",
@@ -1721,6 +1721,6 @@ const allQuestionList=[
     "level": "medium"
   }
 ]
-  
 
-module.exports=allQuestionList;
+
+module.exports = allQuestionList;
