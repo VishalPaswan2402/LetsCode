@@ -54,7 +54,7 @@ app.use(cookieParser());
 const sessionOption = {
     secret: process.env.SECREAT_PASS || 'letscodeindia',
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
         expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
         maxAge: 7 * 24 * 60 * 60 * 1000,
