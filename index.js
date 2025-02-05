@@ -52,6 +52,7 @@ store.on("error", () => {
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 const sessionOption = {
+    store,
     secret: process.env.SECREAT_PASS || 'letscodeindia',
     resave: false,
     saveUninitialized: true,
