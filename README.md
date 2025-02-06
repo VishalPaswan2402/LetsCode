@@ -96,9 +96,7 @@ This is an **Let's Code** web application built using these **(MongoDB, Express,
 
 - **No Cost**: LetsCode is completely free to use. Whether you're a beginner or an experienced coder, this platform provides a cost-effective solution for practicing DSA without any subscription or payment requirements.
 
----
-
- By using LetsCode, you can enhance your coding skills, track your progress, and compete with fellow users in the world of Data Structures and Algorithms.
+- By using LetsCode, you can enhance your coding skills, track your progress, and compete with fellow users in the world of Data Structures and Algorithms.
 
 
 ## Signup Process - LetsCode
@@ -127,6 +125,4 @@ The signup process on LetsCode is simple and quick. Follow the steps below to cr
    - After verifying your email, you can log in using your **username** and **password**.
    - On successful login, you will be directed to the dashboard where you can start solving DSA problems, track progress, and view your rank.
 
----
-
-By following these steps, you will be able to create an account on LetsCode and start practicing Data Structures and Algorithms right away. The easy signup process ensures that you can get started with no hassle, and the email verification adds an extra layer of security to your account.
+- By following these steps, you will be able to create an account on LetsCode and start practicing Data Structures and Algorithms right away. The easy signup process ensures that you can get started with no hassle, and the email verification adds an extra layer of security to your account.
